@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <ol class="breadcrumb">
     <li><a href="/">主页</a></li>
-    <li class="active">编辑话题</li>
+    <li class="active">新建话题</li>
   </ol>
   <div class="panel-body">
     {% if edit_error %}
@@ -9,15 +9,13 @@
       <a class="close" data-dismiss="alert" href="#">&times;</a>
       <strong>{{edit_error}}</strong>
     </div>
-        {% endif %}
-
-    {% if error %}
+    {% endif %} {% if error %}
     <div class="alert alert-warning">
       <a class="close" data-dismiss="alert" href="#">&times;</a>
       <strong>{{error}}</strong>
     </div>
     {% endif %}
-    <form class="form-horizontal" action="/thread/edit/{{thread.id}}" method="post">
+    <form class="form-horizontal" action="/thread/create" method="post">
       <div class="form-group">
         <label class="col-sm-2 control-label" for="tab">选择版块：</label>
         <div class="col-sm-10">
@@ -44,7 +42,7 @@
       <div class="form-group">
         <div class="col-sm-offset-5 col-sm-4">
           <input type="hidden" name="_csrf" value="{{csrf}}" />
-          <button type="submit" class="btn btn-danger">修改</button>
+          <button type="submit" class="btn btn-danger">创建</button>
         </div>
       </div>
     </form>

@@ -36,7 +36,7 @@ describe('v2 thread', function () {
     req
       .expect(200)
       .end(function (err, res) {
-        res.text.should.containEql('发布话题');
+        res.text.should.containEql('新建话题');
         done(err);
       });
   });
@@ -49,7 +49,7 @@ describe('v2 thread', function () {
         content: '木耳敲回车'
       })
       .expect(403, function (err, res) {
-        res.text.should.containEql('发布话题');
+        res.text.should.containEql('新建话题');
         done(err);
       });
   });

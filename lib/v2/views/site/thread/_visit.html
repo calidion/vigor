@@ -17,7 +17,7 @@
             <img src="{{thread.author.avatar}}" alt="Author Avatar" style="width:16px;height: 16px;"> {{thread.author.username}}
           </a> • 发表于 • <span class="text-success">{{thread.createdAt| since}}</span> • | 共 •
           <span class="text-success">
-          {{thread.visits}} </span> • 次浏览 {% if (thread.createdAt !== thread.updatedAt) %}| 最后一次编辑是 • <span class="text-success">
+          {{thread.visits}} </span> • 次浏览 {% if (thread.createdAt !== thread.updatedAt) %} | 编辑于 • <span class="text-success">
             {{thread.updatedAt| since}}
           </span> • {% endif %} {% if thread.tab %}| 来自 • <span class="text-success">{{thread.tab}}</span> • {% endif %}
         </h5>
@@ -67,8 +67,24 @@
     </div>
   </div>
   <div class="panel-body">
-    <div class="">
-      {{thread.content | markdown}}
+    {{thread.content | markdown}}
+  </div>
+  <div class="container-fuild">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <h5 class="text-center">
+          <a class="btn btn-xs" title="收藏" href="/thread/favorite/{{thread.id}}?action=add">
+            <span class="label label-default">&nbsp; <i class="fa fa-star"></i> <i class="badge">0</i></span>
+          </a>
+          <a class="btn btn-xs" href="/thread/thumbs/{{thread.id}}?action=up">
+            <span class="label label-default">&nbsp;  <i class="fa fa-thumbs-up"></i> <i class="badge">0</i></span>
+          </a>
+          <a class="btn btn-xs" href="/thread/thumbs/{{thread.id}}?action=down">
+            <span class="label label-default">&nbsp;  <i class="fa fa-thumbs-down"></i> <i class="badge">0</i> </span>
+
+          </a>
+        </h5>
+      </div>
     </div>
   </div>
 </div>
