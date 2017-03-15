@@ -22,11 +22,14 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
     crossorigin="anonymous">
 
+  <link href="//cdn.bootcss.com/prism/1.6.0/themes/prism.min.css" rel="stylesheet">
+  
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
+  <script src="//cdn.bootcss.com/prism/1.6.0/prism.min.js"></script>
 
   {% if topic %}
   <title>
@@ -100,7 +103,7 @@
               </li>
               <li>
                 <a href='/thread/user/{{currentUser.id}}' data-method="post" rel="nofollow"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;发表的帖子</a>
-                <a href='/post/user/{{currentUser.id}}' data-method="post" rel="nofollow"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;参与的帖子</a>
+                <a href='/post/user/{{currentUser.id}}' data-method="post" rel="nofollow"><i class="fa fa-commenting"></i>&nbsp;&nbsp;参与的帖子</a>
               </li>
               <li>
                 <a href='/thread/favorite/{{currentUser.id}}' data-method="post" rel="nofollow"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;收藏</a>
@@ -135,17 +138,25 @@
   </div>
   <nav class="navbar navbar-default navbar-static-bottom">
     <div class="container">
-      <div id='backtotop'></div>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">回到顶部</a>
-        </li>
-        <li>
-          <a href='/rss'>RSS</a>
-        </li>
-        <li>
-          <a href='https://github.com/calidion/server.xiv.im'>源码地址</a>
-        </li>
-      </ul>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6">
+          <p class="navbar-text">Powered By <a href="https://github.com/calidion/vig">vig</a></p>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6">
+          <ul class="nav navbar-nav navbar-right">
+            <!--<li><a href="#">回到顶部</a>
+            </li>-->
+            <!--<li>
+              <a href='/rss'>RSS</a>
+            </li>-->
+            <li>
+              <a href='https://github.com/calidion/server.xiv.im'>源码地址</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
     </div>
   </nav>
   {% block analytics %} {% endblock %}

@@ -1,54 +1,54 @@
-<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered table-responsive">
   <tr>
-    <th class="text-center">回复/点击</th>
-    <th class="text-center">头像</th>
-    <th class="text-center">发布人</th>
     <th class="text-center">主题</th>
-    <th class="text-center">发布时间</th>
-    <th class="text-center">回复人</th>
-    <th class="text-center">回复时间</th>
   </tr>
   {% for thread in threads %}
+
   <tr>
-    <td class="text-center">
-      <span class="count_of_replies" title="回复数">
-      {{thread.replies}}
-    </span>
-      <span class="count_seperator">/</span>
-      <span class="count_of_visits" title='点击数'>
-      {{thread.visits}}
-    </span>
-    </td>
-    <td class="text-center">
-      <a href="/user/page/{{thread.author.id}}">
-        <img src="{{thread.author.avatar}}" title="{{thread.author.username}}" style="width:14px;height:14px;" />
-      </a>
-    </td>
-    <td class="text-center">
-      <a href="/user/page/{{thread.author.id}}">
-        {{thread.author.username}}
-      </a>
-    </td>
     <td>
-      {% if thread.sticky %}
-      <span class="label label-success">置顶</span> {% endif %} {% if thread.highlighted %}
-      <span class="label label-warning">精华</span> {% endif %}
-      <span class="label label-default">{{ thread.category }}</span>
-      <a href='/thread/visit/{{thread.id}}' title='{{thread.title}}'>{{thread.title}}</a>
-    </td>
-    <td class="text-center">
-      {{thread.createdAt | since}}
-    </td>
-    <td class="text-center">
-      {% if thread.lastReplier %}
-      <a href="/user/page/{{thread.author.id}}">
-        <img class="user_small_avatar" src="{{thread.lastReplier.avatar}}" style="width:14px;height:14px;"> {{thread.lastReplier.username}}
-      </a>
-      {% endif %}
-    </td>
-    <td class="text-center">
-      {% if thread.lastReplier %}
-      <span>{{thread.lastReplyAt | since}}</span> {% endif %}
+      <div class="media">
+        <div class="media-left">
+          <a href="/user/page/{{thread.author.id}}">
+            <img class="media-object" src="{{thread.author.avatar}}" alt="用户" title="{{thread.author.username}}" />
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-10">
+                  <span class="label label-default">{{ thread.category | category}}</span>
+                  <a href='/thread/visit/{{thread.id}}' title='{{thread.title}}'>{{thread.title}}</a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-2 text-right">
+                  {% if thread.sticky %}
+                  <span class="label label-success">置顶</span> {% endif %} {% if thread.highlighted %}
+                  <span class="label label-warning">精华</span> {% endif %}
+                  <span class="badge"> {{thread.replies}} / {{thread.visits}}</span>
+                </div>
+              </div>
+            </div>
+          </h4>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                作者：<a class="text-muted" href="/user/page/{{thread.author.id}}">{{thread.author.username}}</a> 发布于：
+                <span class="text-muted">{{thread.createdAt | since}}</span>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                {% if thread.lastReplier %}
+                <div class="text-right">
+                  <a class="btn btn-xs" href="/user/page/{{thread.lastReplier.id}}"><img src="{{thread.lastReplier.avatar}}" alt="最后回复" style="width:14px;height:14px"> {{thread.lastReplier.username}}</a>
+                  <span class="text-muted"> 回复于 </span>
+                  <span class="label label-info ">{{thread.lastReplyAt | since}}</span>
+
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </td>
   </tr>
   {% endfor %}
