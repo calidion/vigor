@@ -1,0 +1,39 @@
+{% macro item(user) %}
+
+<div class="media">
+  <div class="media-left">
+    <a href="/user/page/{{user.id}}">
+      <img class="media-object" src="{{user.avatar}}" alt="User Avatar" style="width:16px;height:16px" />
+    </a>
+  </div>
+  <div class="media-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <a class="text-muted" href="/user/page/{{user.id}}">{{user.username}}</a>
+        </div>
+        <div class="col-md-4">
+          <i class="fa fa-people"></i>粉丝: {{user.followers}} | <i class="fa fa-user"></i> 关注: {{user.followees}}
+        </div>
+        <div class="col-md-4">
+          <a href='mailto:{{user.email}}' class="text-muted">
+            <i class="fa fa-envelope-o" title='电子邮箱'></i>
+          </a>
+          {% if user.url %}
+          <a href="{{user.url}}" class="text-muted" target='_blank'>
+            <i class="fa fa-home" title='个人网站'></i>
+          </a>
+          {% endif %} {% if user.weibo %}
+          <a href="{{user.weibo}}" class="text-muted" target='_blank'>
+            <i class="fa fa-weibo" title='微博'></i>
+          </a>
+          {% endif %}
+        </div>
+        <div class="col-md-12">
+          {{user.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endmacro %}

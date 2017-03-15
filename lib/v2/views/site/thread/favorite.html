@@ -1,0 +1,15 @@
+ {% extends "../layout.html" %} {% block content %}
+<ol class="breadcrumb">
+  <li><a href="/">主页</a></li>
+  <li class="active">收藏的话题</li>
+</ol>
+
+{% if threads.length %} {% include "./_list.html" %} {% else %}
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <p class="text-center text-danger">
+      尚未发现你的收藏！
+    </p>
+  </div>
+</div>
+{% endif %} {% endblock %}

@@ -1,0 +1,44 @@
+{% macro item(thread) %}
+<tr>
+  <td class="text-center">
+    <span class="count_of_replies" title="回复数">
+      {{thread.replies}}
+    </span>
+    <span class="count_seperator">/</span>
+    <span class="count_of_visits" title='点击数'>
+      {{thread.visits}}
+    </span>
+  </td>
+  <td class="text-center">
+    <a href="/user/page/{{thread.author.id}}">
+      <img src="{{thread.author.avatar}}" title="{{thread.author.username}}" style="width:14px;height:14px;" />
+    </a>
+  </td>
+  <td class="text-center">
+    <a href="/user/page/{{thread.author.id}}">
+        {{thread.author.username}}
+      </a>
+  </td>
+  <td>
+    {% if thread.sticky %}
+    <span class="label label-success">置顶</span> {% endif %} {% if thread.highlighted %}
+    <span class="label label-warning">精华</span> {% endif %}
+    <span class="label label-default">{{thread.category}}</span>
+    <a href='/thread/visit/{{thread.id}}' title='{{thread.title}}'>{{thread.title}}</a>
+  </td>
+  <td class="text-center">
+    {{thread.createdAt | since}}
+  </td>
+  <td class="text-center">
+    {% if thread.lastReplier %}
+    <a href="/user/page/{{thread.author.id}}">
+      <img class="user_small_avatar" src="{{thread.lastReplier.avatar}}" style="width:14px;height:14px;"> {{thread.lastReplier.username}}
+    </a>
+    {% endif %}
+  </td>
+  <td class="text-center">
+    {% if thread.lastReplier %}
+    <span>{{thread.lastReplyAt | since}}</span> {% endif %}
+  </td>
+</tr>
+{% endmacro %}

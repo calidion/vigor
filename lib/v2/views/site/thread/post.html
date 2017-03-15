@@ -1,0 +1,33 @@
+{% macro show(post, i, user) %}
+<div class="media" id="post-{{post.id}}">
+  <div class="media-left">
+    <a href="/users/{{post.author.id}}">
+      <img class="media-object" src="{{post.author.avatar}}" alt="avatar" style="width:32px;height: 32px" title="{{post.author.username}}">
+    </a>
+  </div>
+  <div class="media-body">
+    <h5 class="media-heading">
+      <div class="container-fluid">
+        <a href="/users/{{post.author.id}}">
+        {{post.author.username}}
+      </a>
+        <span class="pull-right">
+                {% if (user.id === post.author.id) %}
+      <a href="/post/edit/{{post.id}}">
+        <i class="fa fa-pencil-square-o" title="编辑"></i>
+      </a>
+      <a href="">
+        <i class="fa fa-trash" title="删除"></i>
+      </a>
+      {% endif %} | 
+             {{post.createdAt | since}} &nbsp;
+      <a href="#post-{{post.id}}"># {{i}}</a> 楼
+      </span>
+      </div>
+    </h5>
+    <p>
+      {{post.content | markdown}}
+    </p>
+  </div>
+</div>
+{% endmacro %}

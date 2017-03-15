@@ -1,0 +1,28 @@
+{% from './item.html' import show %}
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <ol class='breadcrumb'>
+      <li><a href='/'>主页</a></li>
+      <li class='active'>我的消息</li>
+    </ol>
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#unread" aria-controls="unread" role="tab" data-toggle="tab">未读消息</a></li>
+      <li role="presentation"><a href="#read" aria-controls="read" role="tab" data-toggle="tab">已读消息</a></li>
+      <!--<li role="presentation"><a href="#all">全部消息</a></li>-->
+    </ul>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="unread">
+        {% if unread.length %} {% for message in unread %} {{show(message)}} {% endfor %} {% else %}
+        <p class="alert alert-default">没有新的消息</p>
+        {% endif %}
+
+      </div>
+      <div role="tabpanel" class="tab-pane" id="read">
+        {% if read.length %} {% for message in read %} {{show(message)}} {% endfor %} {% else %}
+        <p class="alert alert-default">没有消息</p>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>

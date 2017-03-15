@@ -1,0 +1,24 @@
+{% macro card(user, title) %}
+
+<div class="panel panel-default">
+  <div class="panel-heading">{{ title }}</div>
+  <div class="panel-body">
+    <div class="media">
+      <div class="media-left">
+        <a href="/user/page/{{user.id}}">
+          <img class="media-object" src="{{user.avatar}}" alt="User avatar" style="width:64px;height: 64px;">
+        </a>
+      </div>
+      <div class="media-body">
+        <p class="media-heading text-success">{{user.username}}</p>
+        <p class="text-info">积分：{{user.score}} </p>
+        <p>
+          "<span class="text-muted">
+          {% if user.signature %} {{user.signature}} {% else %} 这家伙很懒，什么个性签名都没有留下。 {% endif %}
+          </span>"
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endmacro %}

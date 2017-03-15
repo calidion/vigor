@@ -1,0 +1,134 @@
+{% extends "layout.html" %} {% block content %}
+<ol class="breadcrumb">
+  <li><a href="/">主页</a></li>
+  <li class="active">用户设置</li>
+</ol>
+
+<div class="panel panel-default">
+  <div class="panel-heading">用户详情</div>
+  <div class="panel-body">
+    {% if error %}
+    <p class="alert alert-danger">
+      <a class="close" data-dismiss="alert" href="#">&times;</a>
+      <strong>{{error}}</strong>
+    </p>
+    {% endif %} {% if success %}
+    <p class="alert alert-success">
+      <strong>{{success}}</strong>
+    </p>
+    {% endif %}
+
+    <form class="form-horizontal" action="/user/settings" method="post">
+      <div class="form-group">
+        <label for="username" class="col-sm-2 control-label">用户名</label>
+        <div class="col-sm-10">
+          <input type="text" readonly="readonly" class="form-control" name="username" id="username" placeholder="用户名" value="{{username}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email" class="col-sm-2 control-label">电子邮件</label>
+        <div class="col-sm-10">
+          <input type="email" readonly="readonly" class="form-control" name="email" id="email" placeholder="电子邮件" value="{{email}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="url" class="col-sm-2 control-label">个人网站</label>
+        <div class="col-sm-10">
+          <input type="url" class="form-control" name="url" id="url" placeholder="个人网站" value="{{url}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="location" class="col-sm-2 control-label">所在地点</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="location" id="location" placeholder="所在地点" value="{{location}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="weibo" class="col-sm-2 control-label">微博</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="weibo" id="weibo" placeholder="微博" value="{{weibo}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="github" class="col-sm-2 control-label">GitHub</label>
+        <div class="col-sm-10">
+          <input type="text" readonly="readonly" class="form-control" name="github" id="github" placeholder="GitHub" value="{{github}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="signature" class="col-sm-2 control-label">个性签名</label>
+        <div class="col-sm-10">
+          <textarea type="text" class="form-control" row="20" name="signature" id="signature" placeholder="个性签名">{{signature}}</textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <input type="hidden" id="action" name="action" value="change_setting" />
+          <input type="hidden" name="_csrf" value="{{csrf}}" />
+          <button type="submit" class="btn btn-primary">保存设置</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">更改密码</div>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal" action="/user/password/update" method="post">
+          <div class="form-group">
+            <label for="current" class="col-sm-4 control-label">当前密码</label>
+            <div class="col-sm-8">
+              <input type="password" class="form-control" name="current" id="current" placeholder="当前密码" value="{{current}}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="new" class="col-sm-4 control-label">新密码</label>
+            <div class="col-sm-8">
+              <input type="password" class="form-control" name="new" id="new" placeholder="新密码" value="{{new}}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="confirm" class="col-sm-4 control-label">确认密码</label>
+            <div class="col-sm-8">
+              <input type="password" class="form-control" name="confirm" id="confirm" placeholder="确认密码" value="{{confirm}}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+              <input type="hidden" id="action" name="action" value="change_setting" />
+              <input type="hidden" name="_csrf" value="{{csrf}}" />
+              <button type="submit" data-loading-text="更改中.." class="btn btn-info">修改密码</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Access Token</div>
+        <div class="panel-body">
+          <form class="form-horizontal" action="/user/password/update" method="post">
+            <div class="form-group">
+              <label for="current" class="col-sm-2 control-label">字符串</label>
+              <div class="col-sm-10">
+                <p class="form-control-static">{{accessToken}}</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="current" class="col-sm-2 control-label">二维码</label>
+              <div class="col-sm-10">
+                <p class="form-control-static"><span id="access-token-qrcode"></span></p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %} {% block analystics %} {% include "./analytics/index.html" %} {% endblock %}

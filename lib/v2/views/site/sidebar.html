@@ -1,0 +1,37 @@
+{% from "user/profile.html" import card %}
+<div id='sidebar'>
+  {% if user %} {{card(user, '我的信息')}} {% elif currentUser %} {{card(currentUser, '用户详情')}} {% else %}
+
+  <div class='panel panel-default'>
+    <div class="panel-heading">
+      <h3 class="panel-title">{{config.site.description}}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="register-general">
+        您可以
+        <a href='/user/login'>登录</a> 或
+        <a href='/user/register'>注册</a>
+      </div>
+      <hr/>
+      <div class="oauth">
+            <h5>第三方登录</h5>
+
+      <div class="btn-group" role="group" aria-label="...">
+  <a class="btn btn-default" href="/oauth/github/login"><i class="fa fa-github"></i></a>
+  <a class="btn btn-default" href="/oauth/github/login">github</a>
+</div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  {% if currentUser %}
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <a href='/thread/create' class='btn btn-success'>
+      发布话题
+      </a>
+    </div>
+  </div>
+  {% endif %}
+</div>

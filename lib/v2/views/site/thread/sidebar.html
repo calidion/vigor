@@ -1,0 +1,13 @@
+{% from "../user/profile.html" import card %}
+<div id='sidebar'>
+  {{ card(thread.author, '作者详情') }}
+  {% if currentUser %}
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <a href='/thread/create' class='btn btn-success'>
+      发布话题
+      </a>
+    </div>
+  </div>
+  {% endif %}
+</div>

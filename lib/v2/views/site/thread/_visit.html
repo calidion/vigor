@@ -1,0 +1,110 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      {% if thread.sticky %}
+      <span class="label label-success">置顶</span> {% endif %} {% if thread.highlighted %}
+      <span class="label label-warning">精华</span> {% endif %}
+      <span class="topiclist-tab">{{ thread.tab }}</span>
+      <strong>&nbsp;&nbsp;<big>{{thread.title}}</big></strong>
+    </h3>
+  </div>
+  <div class="container-fuild bg-info">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-8">
+        <h5 class="text-muted">
+          &nbsp;&nbsp; •
+          <a href="/user/page/{{thread.author.id}}">
+            <img src="{{thread.author.avatar}}" alt="Author Avatar" style="width:16px;height: 16px;"> {{thread.author.username}}
+          </a> • 发表于 • <span class="text-success">{{thread.createdAt| since}}</span> • | 共 •
+          <span class="text-success">
+          {{thread.visits}} </span> • 次浏览 {% if (thread.createdAt !== thread.updatedAt) %}| 最后一次编辑是 • <span class="text-success">
+            {{thread.updatedAt| since}}
+          </span> • {% endif %} {% if thread.tab %}| 来自 • <span class="text-success">{{thread.tab}}</span> • {% endif %}
+        </h5>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <h5 class="text-right text-muted">
+          {% if currentUser %} {% if currentUser.isAdmin %}
+          <a class="text-right text-muted" href='/thread/top/{{thread.id}}' data-method="post">
+          {% if thread.top  %}
+            <i class="fa fa-lg fa-star-o" title='取消置顶'></i>
+          {%  else  %}
+            <i class="fa fa-lg fa-star" title='置顶'></i>
+          {% endif %}
+        </a>
+          <a class="text-right text-muted" href='/thread/good/{{thread.id}}' data-method="post">
+          {% if thread.good %}
+            <i class="fa fa-lg fa-heart-o" title="取消精华"></i>
+          {%  else  %}
+            <i class="fa fa-lg fa-heart" title="加精华"></i>
+          {% endif %}
+        </a>
+
+          <a class="text-right text-muted" href='/thread/lock/{{thread.id}}' data-method="post">
+          {% if thread.lock %}
+            <i class="fa fa-lg fa-unlock" title='取消锁定'></i>
+          {%  else  %}
+            <i class="fa fa-lg fa-lock" title='锁定（不可再回复）'/></i>
+          {% endif %}
+        </a>
+          <a class="text-right text-muted" href='/thread/edit/{{thread.id}}'>
+            <i class="fa fa-lg fa-pencil-square-o" title='编辑'></i></a>
+          <a href='javascript:;' data-id="{{thread.id}}" class='delete_topic_btn'>
+            <i class="fa fa-lg fa-trash" title='删除'></i></a>
+          {% else %} {% if (currentUser.id === thread.author.id) %}
+          <a class="text-right text-muted" href="/thread/edit/{{thread.id}}">
+            <span class="glyphicon glyphicon-edit" title='编辑'></span>
+          </a>
+          <a class="text-right text-muted" href='javascript:;' data-id="{{thread.id}}" class='delete_topic_btn'>
+            <span class="glyphicon glyphicon-trash" title='删除'></span></a>
+          {% else %}
+          <a class="text-right text-muted" href="/thread/favorite/{{currentUser.id}}?action=add&id={{thread.id}}">
+            <span class="glyphicon glyphicon-star" title=''></span>
+          </a>
+          {% endif %} {% endif %} &nbsp;&nbsp;
+        </h5>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="">
+      {{thread.content | markdown}}
+    </div>
+  </div>
+</div>
+
+{% if thread.posts.length > 0 %}
+<div class="panel panel-default">
+  <div class="panel-heading">{{thread.posts.length}}&nbsp;回复
+  </div>
+  <div class="panel-body">
+    {% from "./post.html" import show %} {% for post in thread.posts %} {{show(post, loop.index, currentUser)}} {% if (thread.posts.length
+    !== loop.index) %}
+    <hr/> {% endif %} {% endfor %}
+  </div>
+</div>
+{% endif %} {% if currentUser %}
+
+<div class="panel panel-default">
+  <div class="panel-heading">添加回复</div>
+  <div class="panel-body">
+    <div class='panel'>
+      <form class="form-horizontal" action='/post/create/{{thread.id}}' method='post'>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <textarea name='content' rows='12' class="form-control" placeholder="输入回复内容"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button class='btn btn-warning' type="submit">回复{% if thread.lock %}(此主题已锁定){% endif %}{% if thread.lock %} disabled="disabled" {% endif %}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% else %}
+<p class="alert alert-warning">你尚未<a href="/user/login">登录</a>，无法进行回复。</p>
+{% endif %}

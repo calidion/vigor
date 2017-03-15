@@ -1,0 +1,39 @@
+<ul class='pagination'>
+  {% if (page
+  <=1 ) %} <li class='disabled'><a>&lt;&lt;</a></li>
+    {% else %}
+    <li><a href="/?page=1">&lt;&lt;</a></li>
+    {% endif %} {% if ((page - 1)
+    <=1 ) %} <li class='disabled'><a>&lt;</a></li>
+      {% else %}
+      <li><a href="/?page={{page-1}}">&lt;</a></li>
+      {% endif %} {% if (page > 5 ) %}
+      <li><a>...</a></li>
+      {% endif %} {% if ((page - 3) > 0) %}
+      <li><a href="/?page={{page-3}}">{{page-3}}</a></li>
+      {% endif %} {% if ((page - 2) > 0) %}
+      <li><a href="/?page={{page-2}}">{{page-2}}</a></li>
+      {% endif %} {% if ((page - 1) > 0) %}
+      <li><a href="/?page={{page-1}}">{{page-1}}</a></li>
+      {% endif %}
+      <li class='disabled'>
+        <a>{{page}}</a>
+      </li>
+      {% if ((page + 1)
+      < total) %} <li><a href="/?page={{page+1}}">{{page+1}}</a></li>
+        {% endif %} {% if ((page + 2)
+        < total) %} <li><a href="/?page={{page+2}}">{{page+2}}</a></li>
+          {% endif %} {% if ((page + 3)
+          < total) %} <li><a href="/?page={{page+3}}">{{page+3}}</a></li>
+            {% endif %} {% if ((page + 5)
+            < total) %} <li><a>...</a></li>
+              {% endif %} {% if ((page + 1) > total ) %}
+              <li class='disabled'><a>&gt;</a></li>
+              {% else %}
+              <li><a href="/?page={{page+1}}">&gt;</a></li>
+              {% endif %} {% if (page === total ) %}
+              <li class='disabled'><a>&gt;&gt;</a></li>
+              {% else %}
+              <li><a href="/?page=total">&gt;&gt;</a></li>
+              {% endif %}
+</ul>

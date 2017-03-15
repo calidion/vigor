@@ -1,0 +1,96 @@
+  <ol class='breadcrumb'>
+    <li><a href='/'>主页</a></li>
+    <li class='active'>用户信息</li>
+  </ol>
+<div id='content'>
+  <div class='panel'>
+    <div class='header'>
+    </div>
+    <div class='inner userinfo'>
+      <div class='user_big_avatar'>
+        <img src="{{user.avatar}}" class="user_avatar" title="{{user.username}}" />
+      </div>
+      <a class='dark'>{{user.username}}</a>
+      <div class='user_profile'>
+        <ul class='unstyled'>
+          <span class='big'>{{user.score}}</span> 积分 {% if user.favoriteThreads %}
+          <li>
+            <a class='dark' href="/user/favorites/{{user.id}}" target='_blank'>
+              <span class='big collect-topic-count'>{{user.favoriteThreads}}</span>话题收藏
+            </a>
+          </li>
+          {% endif %} {% if (user.url) %}
+          <li>
+            <i class="fa fa-lg fa-fw fa-home"></i>
+            <a class='dark' href="{{user.url}}" target='_blank'>{{user.url}}</a>
+          </li>
+          {% endif %} {% if (user.location) %}
+          <li>
+            <i class="fa fa-lg fa-fw fa-map-marker"></i>
+            <span class='dark'>{{user.location}}</span>
+          </li>
+          {% endif %} {% if (user.githubUsername) %}
+          <li>
+            <i class="fa fa-lg fa-fw fa-github"></i>
+            <a class='dark' href="https://github.com/{{user.githubUsername}}" target='_blank'>
+              @{{user.githubUsername}}
+            </a>
+          </li>
+          {% endif %} {% if (user.weibo) %}
+          <li>
+            <i class="fa fa-lg fa-fw fa-twitter"></i>
+            <a class='dark' href="{{user.weibo}}" target='_blank'>{{user.weibo}}</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+      <p class='col_fade'>注册时间 {{user.createdAt | since}}</p>
+      {% if currentUser.isAdmin %} {% if user.isStar %}
+      <span class='span-common' id='set_star_btn' action='cancel_star'>取消达人</span> {% else %}
+      <span class='span-common' id='set_star_btn' action='set_star'>设为达人</span> {% endif %} {% if user.blocked %}
+      <span class='span-common' id='set_block_btn' action='cancel_block'>取消屏蔽用户</span> {% else %}
+      <span class='span-common' id='set_block_btn' action='set_block'>屏蔽用户</span> {% endif %}
+
+      <span class="span-common" id="delete_all">删除所有发言</span>
+
+      <br/><br/> Email (Seen by Administrator): <a href="mailto:<%= user.email}}">{{user.email}}</a> {% if user.active %}
+      <a href="/active_account?key=<%- typeof(token) !== 'undefined' && token %>&name=
+          <%= user.username}}" target="_blank">
+        <span class="span-common">
+           激活账号
+         </span>
+      </a>
+      {% endif %} {% endif %}
+    </div>
+  </div>
+
+  <div class='panel'>
+    <div class='header'>
+      <span class='col_fade'>最近创建的话题</span>
+    </div>
+    {% if threads.length > 0 %}
+    <div class='cell more'>
+      <a class='dark' href="/user/threads/{{user.id}}">查看更多»</a>
+    </div>
+    {% else %}
+    <div class='inner'>
+      <p>无话题</p>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class='panel'>
+    <div class='header'>
+      <span class='col_fade'>最近参与的话题</span>
+    </div>
+    {% if attended.length > 0 %}
+    <div class='cell more'>
+      <a class='dark' href="/user/posts/{{user.id}}">查看更多»</a>
+    </div>
+    {% else%}
+    <div class='inner'>
+      <p>无话题</p>
+    </div>
+    {% endif %}
+  </div>
+</div>

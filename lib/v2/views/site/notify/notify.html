@@ -1,0 +1,22 @@
+{% extends "../layout.html" %} {% block content %}
+<ul class="breadcrumb">
+  <li><a href="/">主页</a></li>
+  <li class="active">结果通知</li>
+</ul>
+<div class="panel panel-default">
+  <div class="panel-body">
+    {% if error %}
+    <p class="alert alert-danger">
+      <strong>{{error}}</strong>
+    </p>
+    {% endif %} {% if success %}
+    <p class="alert alert-success">
+      <strong>{{success}}</strong>
+    </p>
+    {% endif %}
+    <p>
+      <a class="btn btn-default" href="{% if referer %}{{referer}}{% else %}/{% endif %}">返回</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

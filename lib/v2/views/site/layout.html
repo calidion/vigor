@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- meta -->
+  <meta charset="utf-8" />
+  <meta name='description' content='{{config.description}}'>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="{{config.site.keywords}}" />
+  <meta name="apple-itunes-app" content="app-id={{config.site.appId}}" />
+  <meta name="referrer" content="always" />
+  <link title="rss" type="application/rss+xml" rel="alternate" href="/rss" />
+  <link rel="icon" href="{{config.site.icon}}" type="image/x-icon" />
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+  <!-- Optional theme -->
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+  {% if topic %}
+  <title>
+    {{ topic.title }} - {{ config.site.name}}
+  </title>
+  {% elif pageTitle %}
+  <title>
+    {{ pageTitle}} - {{config.site.title}}
+  </title>
+  {% else %}
+  <title>
+    {{config.site.description}}
+  </title>
+  {% endif %}
+  <meta content="_csrf" name="csrf-param" />
+  <meta content="{{csrf}}" name="csrf-token" />
+</head>
+
+<body>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#links" aria-expanded="false">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href="/">{{config.site.title}}</a>
+      </div>
+      <div class="collapse navbar-collapse" id="links">
+        <form id='search_form' class='navbar-form navbar-left navbar-search' action="/search">
+          <div class="form-group">
+            <input type='text' id='q' name='q' class='form-control' value='' />
+          </div>
+          <button type="submit" class="btn btn-default">提交</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href='/'>首页</a>
+          </li>
+          {% if currentUser %}
+          <li>
+            <a href='/my/messages'>
+              <span class='big messages_count'>{{currentUser.messages_count}}</span> <i class="fa fa-envelope"></i> 消息
+            </a>
+          </li>
+          <li class="dropdown">
+            <a id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+              <i class="fa fa-sitemap"></i> 社区
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dLabel">
+              <li>
+                <a href='/user/star' data-method="post" rel="nofollow"><i class="fa fa-star"></i>&nbsp;&nbsp;达人</a>
+              </li>
+              <li>
+                <a href='/user/top' data-method="post" rel="nofollow"><i class="fa fa-arrow-up"></i>&nbsp;&nbsp;排名</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+              <i class="fa fa-user"></i> 我的
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dLabel">
+              <li>
+                <a href='/user/settings' data-method="post" rel="nofollow"><i class="fa fa-user"></i>&nbsp;&nbsp;个人资料</a>
+              </li>
+              <li>
+                <a href='/thread/user/{{currentUser.id}}' data-method="post" rel="nofollow"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;发表的帖子</a>
+                <a href='/post/user/{{currentUser.id}}' data-method="post" rel="nofollow"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;参与的帖子</a>
+              </li>
+              <li>
+                <a href='/thread/favorite/{{currentUser.id}}' data-method="post" rel="nofollow"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;收藏</a>
+              </li>
+              <li>
+                <a href='/user/logout' data-method="post" rel="nofollow"><i class="fa fa-power-off"></i>&nbsp;&nbsp;退出</a>
+              </li>
+            </ul>
+          </li>
+
+          {% else %}
+          <li>
+            <a href='/user/register'>注册</a>
+          </li>
+          <li>
+            <a href='/user/login'>登录</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id='main'>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-9">
+          {% block content %} {% endblock %}
+        </div>
+        <div class="hidden-xs hidden-sm col-md-3">{% include "./sidebar.html" %}</div>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-default navbar-static-bottom">
+    <div class="container">
+      <div id='backtotop'></div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">回到顶部</a>
+        </li>
+        <li>
+          <a href='/rss'>RSS</a>
+        </li>
+        <li>
+          <a href='https://github.com/calidion/server.xiv.im'>源码地址</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  {% block analytics %} {% endblock %}
+</body>
+
+</html>

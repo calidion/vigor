@@ -1,0 +1,18 @@
+{% extends "layout.html" %} {% block content %}
+<ol class="breadcrumb">
+  <li><a href="/">主页</a></li>
+  <li class="active">社区达人</li>
+</ol>
+<div class="panel panel-default">
+  <div class="panel-body">
+    {% from './item.html' import item %} 
+    {% if stars.length %}
+     {% for star in stars %} 
+     {{item(star)}}
+     {% endfor %}
+     {% else %}
+     尚无社区达人
+     {% endif %}
+  </div>
+</div>
+{% endblock %} {% block analystics %} {% include "../analytics/index.html" %} {% endblock %}
