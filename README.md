@@ -26,12 +26,12 @@ xiv.im 是基于vig框架编写的社区论坛以及IM系统。
 
 客户端：
   1. Web: angular 2.x+
-  2. 手机： PhoneGap/Cordova + Web
+  2. 手机： ionic + PhoneGap/Cordova + Web
   3. 桌面： Electron.js + Web
 
 ## 支持与交流
 
-QQ群：312685910,
+QQ群：312685910  
 论坛：[forum.webfullstack.com](http://forum.webfullstack.me)
 
 ## 支持Nodejs版本
