@@ -3,19 +3,22 @@
 <div class="media">
   <div class="media-left">
     <a href="/user/page/{{user.id}}">
-      <img class="media-object" src="{{user.avatar}}" alt="User Avatar" style="width:16px;height:16px" />
+      <img class="media-object" src="{{user.avatar}}" alt="User Avatar" style="width:64px;height:64px" />
     </a>
   </div>
   <div class="media-body">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
           <a class="text-muted" href="/user/page/{{user.id}}">{{user.username}}</a>
         </div>
-        <div class="col-md-4">
-          <i class="fa fa-people"></i>粉丝: {{user.followers}} | <i class="fa fa-user"></i> 关注: {{user.followees}}
+        <div class="col-md-2 text-muted">
+          <i class="fa fa-people"></i><span class="text-muted">粉丝</span> {{user.followers}}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2 text-muted">
+          <i class="fa fa-user"></i> <span class="text-muted">关注</span> {{user.followees}}
+        </div>
+        <div class="col-md-8">
           <a href='mailto:{{user.email}}' class="text-muted">
             <i class="fa fa-envelope-o" title='电子邮箱'></i>
           </a>
@@ -30,7 +33,7 @@
           {% endif %}
         </div>
         <div class="col-md-12">
-          {{user.description}}
+          <span  class="text-muted">描述</span>：{% if user.description %}{{user.description}}{% else %}这个家伙很懒，什么也没有留下{% endif %}
         </div>
       </div>
     </div>

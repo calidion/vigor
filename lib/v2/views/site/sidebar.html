@@ -1,6 +1,6 @@
 {% from "user/profile.html" import card %}
 <div id='sidebar'>
-  {% if user %} {{card(user, '我的信息')}} {% elif currentUser %} {{card(currentUser, '用户详情')}} {% else %}
+  {% if user %} {{card(user, '用户详情')}} {% elif currentUser %} {{card(currentUser, '我的信息')}} {% else %}
 
   <div class='panel panel-default'>
     <div class="panel-heading">

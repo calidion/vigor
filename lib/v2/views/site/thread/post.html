@@ -12,14 +12,15 @@
         {{post.author.username}}
       </a>
         <span class="pull-right">
-                {% if (user.id === post.author.id) %}
+{% if (user.id === post.author.id) %}
       <a href="/post/edit/{{post.id}}">
         <i class="fa fa-pencil-square-o" title="编辑"></i>
       </a>
       <a href="">
         <i class="fa fa-trash" title="删除"></i>
       </a>
-      {% endif %} | 
+       | 
+      {% endif %}
              {{post.createdAt | since}} &nbsp;
       <a href="#post-{{post.id}}"># {{i}}</a> 楼
       </span>
