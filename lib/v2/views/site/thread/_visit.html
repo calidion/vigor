@@ -12,19 +12,16 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-8">
         <h5 class="text-muted">
-          &nbsp;&nbsp; •
+          &nbsp;&nbsp;
           <a href="/user/page/{{thread.author.id}}">
             <img src="{{thread.author.avatar}}" alt="Author Avatar" style="width:16px;height: 16px;"> {{thread.author.username}}
-          </a> • 发表于 • <span class="text-success">{{thread.createdAt| since}}</span> • | 共 •
+          </a> 发表于 • <span class="text-success">{{thread.createdAt| since}}</span> • 共 •
           <span class="text-success">
-          {{thread.visits}} </span> • 次浏览 {% if (thread.createdAt !== thread.updatedAt) %} | 编辑于 • <span class="text-success">
-            {{thread.updatedAt| since}}
-          </span> • {% endif %} {% if thread.tab %}| 来自 • <span class="text-success">{{thread.tab}}</span> • {% endif %}
+          {{thread.visits}} </span> • 次浏览 {% if thread.tab %} 来自 • <span class="text-success">{{thread.tab}}</span>          • {% endif %}
         </h5>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-4">
-        <h5 class="text-right text-muted">
-          {% if currentUser %} {% if currentUser.isAdmin %}
+        <h5 class="text-right text-muted">{% if currentUser %} {% if currentUser.isAdmin %}
           <a class="text-right text-muted" href='/thread/top/{{thread.id}}' data-method="post">
           {% if thread.top  %}
             <i class="fa fa-lg fa-star-o" title='取消置顶'></i>
@@ -59,7 +56,7 @@
             <span class="glyphicon glyphicon-trash" title='删除'></span></a>
           {% else %}
           <a class="text-right text-muted" href="/thread/favorite/{{currentUser.id}}?action=add&id={{thread.id}}">
-            <span class="glyphicon glyphicon-star" title=''></span>
+            <span class="glyphicon glyphicon-star text-muted" title=''></span>
           </a>
           {% endif %} {% endif %} &nbsp;&nbsp; {% endif %}
         </h5>
@@ -71,7 +68,9 @@
   </div>
   <div class="container-fuild">
     <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="col-xs-12 col-sm-12 col-md-4">
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4">
         <h5 class="text-center">
           <a class="btn btn-xs" title="收藏" href="/thread/favorite/{{thread.id}}?action=add">
             <span class="label label-default">&nbsp; <i class="fa fa-star"></i> <i class="badge">0</i></span>
@@ -81,8 +80,14 @@
           </a>
           <a class="btn btn-xs" href="/thread/thumbs/{{thread.id}}?action=down">
             <span class="label label-default">&nbsp;  <i class="fa fa-thumbs-down"></i> <i class="badge">0</i> </span>
-
           </a>
+        </h5>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <h5>
+          {% if (thread.createdAt !== thread.updatedAt) %} <span class="pull-right"> 最后编辑于 • <i class="text-success ">
+            {{thread.updatedAt| since}}</i> • &nbsp;
+          </span>{% endif %}
         </h5>
       </div>
     </div>
