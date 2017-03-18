@@ -12,6 +12,8 @@
       <strong>{{success}}</strong>
     </div>
     {% endif %}
+          {% if config.switch.registration.on === 'true' %}
+
     <form class='form-horizontal' action='/user/login' method='post'>
       <div class="form-group">
         <label class="col-sm-5 control-label" for='username'>用户名</label>
@@ -33,5 +35,6 @@
         </div>
       </div>
     </form>
+    {% endif %}
   </div>
 </div>
