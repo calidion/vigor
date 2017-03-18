@@ -4,18 +4,22 @@
 
   <div class='panel panel-default'>
     <div class="panel-heading">
-      <h3 class="panel-title">{{config.site.description}}</h3>
+      <h3 class="panel-title">登录与注册</h3>
     </div>
     <div class="panel-body">
+      {% if config.switch.regitration.on %}
       <div class="register-general">
         您可以
         <a href='/user/login'>登录</a> 或
         <a href='/user/register'>注册</a>
       </div>
       {% if config.switch.oauth.on %}
-      <hr/>
+      <hr/> {% endif %} {% endif %} {% if config.switch.oauth.on %}
       <div class="oauth">
-        <h5>第三方登录</h5>
+              {% if config.switch.regitration.on %}
+
+        <p>第三方登录</p>
+        {% endif %}
         {% if config.switch.oauth.github %}
         <div class="btn-group" role="group" aria-label="...">
           <a class="btn btn-default" href="/oauth/github/login"><i class="fa fa-github"></i></a>
