@@ -7,20 +7,19 @@
       <h3 class="panel-title">登录与注册</h3>
     </div>
     <div class="panel-body">
-      {% if config.switch.regitration.on %}
+      {% if config.switch.registration.on === 'true' %}
       <div class="register-general">
         您可以
         <a href='/user/login'>登录</a> 或
         <a href='/user/register'>注册</a>
       </div>
-      {% if config.switch.oauth.on %}
-      <hr/> {% endif %} {% endif %} {% if config.switch.oauth.on %}
+      {% if config.switch.oauth.on === 'true' %}
+      <hr/> {% endif %} {% endif %} {% if config.switch.oauth.on === 'true' %}
       <div class="oauth">
-              {% if config.switch.regitration.on %}
-
+              {% if config.switch.registration.on === 'true'%}
         <p>第三方登录</p>
         {% endif %}
-        {% if config.switch.oauth.github %}
+        {% if config.switch.oauth.github === 'true' %}
         <div class="btn-group" role="group" aria-label="...">
           <a class="btn btn-default" href="/oauth/github/login"><i class="fa fa-github"></i></a>
           <a class="btn btn-default" href="/oauth/github/login">github</a>
