@@ -16,10 +16,9 @@
       {% if config.switch.oauth.on === 'true' %}
       <hr/> {% endif %} {% endif %} {% if config.switch.oauth.on === 'true' %}
       <div class="oauth">
-              {% if config.switch.registration.on === 'true'%}
+        {% if config.switch.registration.on === 'true'%}
         <p>第三方登录</p>
-        {% endif %}
-        {% if config.switch.oauth.github === 'true' %}
+        {% endif %} {% if config.switch.oauth.github === 'true' %}
         <div class="btn-group" role="group" aria-label="...">
           <a class="btn btn-default" href="/oauth/github/login"><i class="fa fa-github"></i></a>
           <a class="btn btn-default" href="/oauth/github/login">github</a>
