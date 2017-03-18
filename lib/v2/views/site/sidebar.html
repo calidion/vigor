@@ -12,15 +12,18 @@
         <a href='/user/login'>登录</a> 或
         <a href='/user/register'>注册</a>
       </div>
+      {% if config.switch.oauth.on %}
       <hr/>
       <div class="oauth">
-            <h5>第三方登录</h5>
-
-      <div class="btn-group" role="group" aria-label="...">
-  <a class="btn btn-default" href="/oauth/github/login"><i class="fa fa-github"></i></a>
-  <a class="btn btn-default" href="/oauth/github/login">github</a>
-</div>
+        <h5>第三方登录</h5>
+        {% if config.switch.oauth.github %}
+        <div class="btn-group" role="group" aria-label="...">
+          <a class="btn btn-default" href="/oauth/github/login"><i class="fa fa-github"></i></a>
+          <a class="btn btn-default" href="/oauth/github/login">github</a>
+        </div>
+        {% endif %}
       </div>
+      {% endif %}
     </div>
     {% endif %}
   </div>
