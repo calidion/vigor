@@ -49,10 +49,11 @@
             <i class="fa fa-lg fa-pencil-square-o" title="编辑"></i></a>
           <a href="javascript:;" data-id="{{thread.id}}" class="delete_topic_btn">
             <i class="fa fa-lg fa-trash" title="删除"></i></a>
-          {% else %} {% if (currentUser.id === thread.author.id) %}
+          {% else %} {% if (currentUser.id === thread.author.id) %} {% if config.switch.pay.on === 'true' %}
           <a class="text-right text-muted" href="/thread/pay/{{thread.id}}">
-            <span class="glyphicon glyphicon-yuan" title="编辑"></span>悬赏
+            <span class="glyphicon glyphicon-yuan" title="悬赏"></span>悬赏
           </a>
+          {% endif %}
           <a class="text-right text-muted" href="/thread/edit/{{thread.id}}">
             <span class="glyphicon glyphicon-edit" title="编辑"></span>
           </a>
