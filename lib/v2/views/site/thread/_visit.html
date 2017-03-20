@@ -86,7 +86,8 @@
       </div>
       <div class="col-xs-12 col-sm-12 col-md-4">
         <h5 class="text-center">
-          <a class="btn btn-xs" title="收藏" href="/thread/favorite/{{thread.id}}?action=add">
+          <!--<a class="btn btn-xs" title="收藏" href="/thread/favorite/{{thread.id}}?action=add">-->
+          <a class="btn btn-xs" title="收藏" href="/thread/favorite/{{currentUser.id}}?action=add&id={{thread.id}}">
             <span class="label label-default btn-warning">&nbsp; <i class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;<i>0</i>&nbsp;&nbsp;&nbsp;</span>
           </a>
           <a class="btn btn-xs" title="喜欢" href="/thread/likes/{{thread.id}}?action=up">
