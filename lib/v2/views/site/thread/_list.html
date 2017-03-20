@@ -9,16 +9,17 @@
       <div class="media">
         <div class="media-left">
           <a href="/user/page/{{thread.author.id}}">
-            <img class="media-object" src="{{thread.author.avatar}}" alt="用户" title="{{thread.author.username}}" style="width:45px;height:45px"/>
+            <img class="media-object" src="{{thread.author.avatar}}" alt="用户" title="{{thread.author.username}}" style="width:45px;height:45px"
+            />
           </a>
         </div>
         <div class="media-body">
-          <h4 class="media-heading">
+          <div class="media-heading">
             <div class="container-fluid">
               <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-10">
-                  <span class="label label-default">{{ thread.category | category}}</span>
-                  <a href='/thread/visit/{{thread.id}}' title='{{thread.title}}'>{{thread.title}}</a>
+                  <span class="badge">{{ thread.category | category}}</span>&nbsp;&nbsp;
+                  <a class="text-muted text-bold" href='/thread/visit/{{thread.id}}' title='{{thread.title}}'>{{thread.title}}</a>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2 text-right">
                   {% if thread.sticky %}
@@ -28,20 +29,20 @@
                 </div>
               </div>
             </div>
-          </h4>
+          </div>
           <div class="container-fluid">
             <div class="row">
-              <div class="col-xs-12 col-sm-6 col-md-6">
-                作者：<a class="text-muted" href="/user/page/{{thread.author.id}}">{{thread.author.username}}</a> 发布于：
-                <span class="text-muted">{{thread.createdAt | since}}</span>
+              <div class="col-xs-12 col-sm-6 col-md-6 table-responsive">
+                作者 • <a class="text-warning" href="/user/page/{{thread.author.id}}">{{thread.author.username}}</a> • 发表于
+                 <span class="text-info">{{thread.createdAt | since}}</span>
               </div>
               <div class="col-xs-12 col-sm-6 col-md-6">
                 {% if thread.lastReplier %}
                 <div class="text-right">
-                  <a class="btn btn-xs" href="/user/page/{{thread.lastReplier.id}}"><img src="{{thread.lastReplier.avatar}}" alt="最后回复" style="width:14px;height:14px"> {{thread.lastReplier.username}}</a>
-                  <span class="text-muted"> 回复于 </span>
-                  <span class="label label-info ">{{thread.lastReplyAt | since}}</span>
-
+                  <a class="text-muted" href="/user/page/{{thread.lastReplier.id}}"><img src="{{thread.lastReplier.avatar}}" alt="最后回复" style="width:16px;height:16px" /> • {{thread.lastReplier.username}}
+                    • </a>
+                  <span class="text-muted">回复于 </span>
+                  <span class="label label-danger">{{thread.lastReplyAt | since}}</span>
                 </div>
                 {% endif %}
               </div>
