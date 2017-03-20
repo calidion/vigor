@@ -17,9 +17,9 @@
     {% endif %}
     <form class="form-horizontal" action="/thread/create" method="post">
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="tab">选择版块：</label>
+        <label class="col-sm-2 control-label" for="category">选择版块：</label>
         <div class="col-sm-10">
-          <select class="form-control" name="tab">
+          <select class="form-control" name="category" id="category">
              <option value="">选择版块</option>
             {% for tab in tabs %}
             <option value="{{tab[0]}}" {% if (thread.category === tab[0]) %}selected{% endif %}>{{tab[1]}}</option>

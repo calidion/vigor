@@ -45,7 +45,7 @@ describe('v2 thread', function () {
     req.cookies = shared.cookies;
     req
       .send({
-        tab: config.site.tabs[0][0],
+        category: config.site.tabs[0][0],
         content: '木耳敲回车'
       })
       .expect(403, function (err, res) {
@@ -59,7 +59,7 @@ describe('v2 thread', function () {
     req
       .send({
         title: '呵呵复呵呵' + new Date(),
-        tab: config.site.tabs[0][0],
+        category: config.site.tabs[0][0],
         content: '木耳敲回车'
       })
       .expect(302, function (err, res) {
@@ -87,7 +87,7 @@ describe('v2 thread', function () {
     req
       .send({
         title: '修改后的Title',
-        tab: 'share',
+        category: 'share',
         content: '修改修改的内容!'
       })
       .expect(302, function (err, res) {
