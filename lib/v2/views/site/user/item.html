@@ -10,7 +10,19 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <a class="text-muted" href="/user/page/{{user.id}}">{{user.username}}</a>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4">
+                <a class="text-muted" href="/user/page/{{user.id}}">{{user.username}}</a>
+              </div>
+              <div class="col-md-4">
+                注册于：{{user.createdAt | since}}
+              </div>
+              <div class="col-md-4">
+                最后登录：{{user.updatedAt | since}}
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-md-2 text-muted">
           <i class="fa fa-people"></i><span class="text-muted">粉丝</span> {{user.followers}}
@@ -33,7 +45,8 @@
           {% endif %}
         </div>
         <div class="col-md-12">
-          <span  class="text-muted">描述</span>：{% if user.description %}{{user.description}}{% else %}这个家伙很懒，什么也没有留下{% endif %}
+          <span class="text-muted">描述</span>：{% if user.description %}{{user.description}}{% else %}这个家伙很懒，什么也没有留下{% endif
+          %}
         </div>
       </div>
     </div>
