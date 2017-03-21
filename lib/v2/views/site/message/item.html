@@ -2,7 +2,7 @@
 <div class='cell {% if message.read %}message{% endif %}' message_id='{{message._id}}'>
   {% if(message.type == 'reply') %}
   <span>
-			<a href="/user/page/{{message.replier.id}}" target='_blank'>{{message.replier.username}}</a>
+			<a href="/user/page/{{message.sender.id}}" target='_blank'>{{message.sender.username}}</a>
 			回复了你的话题
 			<a href="/thread/visit/{{message.thread._id}}{% if message.reply %}#{{message.reply._id}}{% endif %}" target='_blank'
       >{{message.thread.title}}</a>
