@@ -71,7 +71,7 @@ describe('v2 thread', function () {
       });
   });
 
-    it('should create a thread again', function (done) {
+  it('should create a thread again', function (done) {
     var req = http(app).post('/thread/create');
     req.cookies = shared.cookies;
     req
@@ -248,7 +248,6 @@ describe('v2 thread', function () {
     req
       .expect(200, function (err, res) {
         res.text.should.containEql('话题取消锁定成功！');
-
         done(err);
       });
   });

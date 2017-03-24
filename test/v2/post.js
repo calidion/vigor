@@ -62,10 +62,8 @@ describe('v2 post', function () {
         content: '木耳敲回车 @sfdsdf @forim'
       })
       .expect(302, function (err, res) {
-        console.log(err, res.text);
         var ids = /^\/thread\/visit\/(\w+)#(\w+)$/.exec(res.headers.location);
         var threadId = ids[1];
-        console.log(ids);
         postId = ids[2];
         threadId.should.equal(shared.thread.id);
         postId.should.not.be.empty();
