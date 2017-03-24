@@ -1,0 +1,57 @@
+<div class="panel panel-default">
+  <ol class="breadcrumb">
+    <li><a href="/">主页</a></li>
+    <li class="active">删除话题</li>
+  </ol>
+  <div class="panel-body">
+    {% if success %}
+    <div class="alert alert-warning">
+      <a class="close" data-dismiss="alert" href="#">&times;</a>
+      <strong>{{success}}</strong>
+    </div>
+    <p>
+      <a href="/" class="btn btn-success">返回</a>
+    </p>
+    {% endif %} {% if message %}
+    <form class="form-horizontal" action="/thread/remove/{{thread.id}}" method="post">
+      <div class="form-group">
+        <div class="col-sm-12">
+          {% if message %}
+          <div class="alert alert-warning">
+            <a class="close" data-dismiss="alert" href="#">&times;</a>
+            <strong>{{message}}</strong>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-5 col-sm-4">
+          <input type="hidden" name="_csrf" value="{{csrf}}" />
+          <button type="submit" class="btn btn-danger">确认删除</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="category">所在版块：</label>
+        <div class="col-sm-10">
+
+          {% for tab in tabs %} {% if (thread.category === tab[0]) %}
+          <p class="form-control-static">{{tab[1]}}</p>
+          {% endif %}{% endfor %}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="title">标题</label>
+        <div class="col-sm-10">
+          <p class="form-control-static">{{thread.title}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="content">主题内容</label>
+        <div class="col-sm-10">
+          <p class="form-control-static">{{thread.content}}</p>
+        </div>
+      </div>
+    </form>
+    {% endif %}
+  </div>
+</div>

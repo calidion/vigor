@@ -62,11 +62,26 @@ describe('v2 post', function () {
         content: '木耳敲回车 @sfdsdf @forim'
       })
       .expect(302, function (err, res) {
+        console.log(err, res.text);
         var ids = /^\/thread\/visit\/(\w+)#(\w+)$/.exec(res.headers.location);
         var threadId = ids[1];
+        console.log(ids);
         postId = ids[2];
         threadId.should.equal(shared.thread.id);
         postId.should.not.be.empty();
+        done(err);
+      });
+  });
+
+  it('should not create a post', function (done) {
+    var req = http(app).post('/post/create/' + shared.thread.removed);
+    req.cookies = shared.cookies;
+    req
+      .send({
+        content: '木耳敲回车 @sfdsdf @forim'
+      })
+      .expect(200, function (err, res) {
+        res.text.should.containEql('主题不存在!');
         done(err);
       });
   });

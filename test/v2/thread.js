@@ -71,6 +71,24 @@ describe('v2 thread', function () {
       });
   });
 
+    it('should create a thread again', function (done) {
+    var req = http(app).post('/thread/create');
+    req.cookies = shared.cookies;
+    req
+      .send({
+        title: '呵呵复呵呵' + new Date(),
+        category: config.site.tabs[0][0],
+        content: '木耳敲回车'
+      })
+      .expect(302, function (err, res) {
+        var id = /^\/thread\/visit\/(\w+)$/.exec(res.headers.location);
+        assert(id.length);
+        assert(id[1]);
+        shared.thread.removed = id[1];
+        done(err);
+      });
+  });
+
   it('should be able to get an edit page', function (done) {
     var req = http(app).get('/thread/edit/' + shared.thread.id);
     req.cookies = shared.cookies;
@@ -163,7 +181,7 @@ describe('v2 thread', function () {
   it('should not delete a thread', function (done) {
     var req = http(app).post('/thread/remove/' + shared.thread.id);
     req
-      .expect(403, function (err, res) {
+      .expect(200, function (err, res) {
         assert(!err);
         res.text.should.containEql('你无权删除当前话题');
         done(err);
@@ -236,6 +254,8 @@ describe('v2 thread', function () {
   });
 
   it('should get a thread list', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 0;
+
     var req = http(app).get('/thread/list');
     req
       .expect(200, function (err, res) {
@@ -276,14 +296,11 @@ describe('v2 thread', function () {
   });
 
   it('should delete a thread', function (done) {
-    var req = http(app).post('/thread/remove/' + shared.thread.id);
+    var req = http(app).post('/thread/remove/' + shared.thread.removed);
     req.cookies = shared.cookies;
     req
       .expect(200, function (err, res) {
-        res.body.should.eql({
-          success: true,
-          message: '话题删除成功！'
-        });
+        res.text.should.containEql('删除成功!');
         done(err);
       });
   });
