@@ -9,9 +9,20 @@ var istanbul = require('gulp-istanbul');
 var nsp = require('gulp-nsp');
 var plumber = require('gulp-plumber');
 var coveralls = require('gulp-coveralls');
-var less = require('gulp-less');
+var sass = require('gulp-sass');
 
 var ts = require("gulp-typescript");
+
+gulp.task('sass', function () {
+  return gulp.src('public/sass/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('public/styles'));
+});
+
+gulp.task('sass:watch', function () {
+  gulp.watch('public/sass/**/*.scss', ['sass']);
+});
+
 var tsProject = ts.createProject("tsconfig.json");
 
 gulp.task("ts", function () {
@@ -20,12 +31,6 @@ gulp.task("ts", function () {
     .js.pipe(gulp.dest("dist"));
 });
 
-
-gulp.task('less', function () {
-  gulp.src('public/**/*.less')
-    .pipe(less())
-    .pipe(gulp.dest('public/'));
-});
 
 gulp.task('static', function () {
   return gulp.src(['lib/**/*.js', 'test/**/*.js'])
@@ -83,6 +88,6 @@ gulp.task('coveralls', ['test'], function () {
 
 // gulp.task('prepublish', ['nsp']);
 gulp.task('prepublish');
-gulp.task('default', ['ts', 'less', 'static', 'test', 'coveralls'], function () {
+gulp.task('default', ['ts', 'sass', 'static', 'test', 'coveralls'], function () {
   process.exit();
 });

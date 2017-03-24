@@ -19,7 +19,7 @@
               <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-10">
                   <span class="badge">{{ thread.category | category}}</span>&nbsp;&nbsp;
-                  <a class="text-muted text-bold" href='/thread/visit/{{thread.id}}' title='{{thread.title}}'>{{thread.title}}</a>
+                  <a class="text-muted text-bold text-thread-title" href='/thread/visit/{{thread.id}}' title='{{thread.title}}'>{{thread.title}}</a>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2 text-right">
                   {% if thread.sticky %}
