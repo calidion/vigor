@@ -18,8 +18,8 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-10">
-                  <span class="badge">{{ thread.category | category}}</span>&nbsp;&nbsp;
-                  <a class="text-muted text-bold text-thread-title" href='/thread/visit/{{thread.id}}' title='{{thread.title}}'>{{thread.title}}</a>
+                  <p class="thread-title"><span class="badge label-info">{{ thread.category | category}}</span><a class="text-muted text-bold text-thread-title"
+                      href='/thread/visit/{{thread.id}}' title='{{thread.title}}'>{{thread.title}}</a></p>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-2 text-right">
                   {% if thread.sticky %}
@@ -31,18 +31,18 @@
             </div>
           </div>
           <div class="container-fluid">
-            <div class="row">
+            <div class="row text-bright-gray">
               <div class="col-xs-12 col-sm-6 col-md-6">
-                作者 • <a class="text-warning" href="/user/page/{{thread.author.id}}">{{thread.author.username}}</a> • 发表于
-                 <span class="text-info">{{thread.createdAt | since}}</span>
+                作者 • <a class="text-muted" href="/user/page/{{thread.author.id}}">{{thread.author.username}}</a> • 发表于
+                <span class="text-info">{{thread.createdAt | since}}</span>
               </div>
               <div class="col-xs-12 col-sm-6 col-md-6">
                 {% if thread.lastReplier %}
                 <div class="text-right">
-                  <a class="text-muted" href="/user/page/{{thread.lastReplier.id}}"><img src="{{thread.lastReplier.avatar}}" alt="最后回复" style="width:16px;height:16px" /> • {{thread.lastReplier.username}}
-                    • </a>
-                  <span class="text-muted">回复于 </span>
-                  <span class="label label-danger">{{thread.lastReplyAt | since}}</span>
+                  <a href="/user/page/{{thread.lastReplier.id}}"><img src="{{thread.lastReplier.avatar}}" alt="最后回复" style="width:16px;height:16px" /></a>
+                  • <a class="text-muted" href="/user/page/{{thread.lastReplier.id}}">{{thread.lastReplier.username}}</a>                  •
+                  <span>回复于 </span>
+                  <span class="label label-warning">{{thread.lastReplyAt | since}}</span>
                 </div>
                 {% endif %}
               </div>
@@ -92,7 +92,7 @@
                 {% endif %} {% if (page === total ) %}
                 <li class='disabled'><a>&gt;&gt;</a></li>
                 {% else %}
-                <li><a href="/?page=total">&gt;&gt;</a></li>
+                <li><a href="/?page={{total}}">&gt;&gt;</a></li>
                 {% endif %}
   </ul>
 </div>

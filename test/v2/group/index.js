@@ -99,7 +99,7 @@ describe('Group', function () {
         res.statusCode.should.equal(200);
         res.body.code.should.equal(0);
         res.body.name.should.equal('Success');
-        res.body.data.length.should.equal(2);
+        res.body.data.length.should.aboveOrEqual(2);
         done(err);
       });
   });

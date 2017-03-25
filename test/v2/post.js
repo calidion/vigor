@@ -142,7 +142,7 @@ describe('v2 post', function () {
         content: '@ssdf 木耳敲回车 @sfdsdf @forim new'
       })
       .expect(302, function (err, res) {
-        var ids = /^\/thread\/visit\/(\w+)#(\w+)$/.exec(res.headers.location);
+        var ids = /^\/thread\/visit\/(\w+)#post-(\w+)$/.exec(res.headers.location);
         var threadId = ids[1];
         var post = ids[2];
         threadId.should.equal(shared.thread.id);
@@ -151,10 +151,9 @@ describe('v2 post', function () {
       });
   });
   it('should not remove a post', function (done) {
-    var req = http(app).post('/post/remove');
+    var req = http(app).post('/post/remove/' + postId);
     req
       .send({
-        id: postId
       })
       .expect(403, function (err, res) {
         res.text.should.containEql('对不起，你不能编辑此回复。');
@@ -202,14 +201,13 @@ describe('v2 post', function () {
   });
 
   it('should remove a post', function (done) {
-    var req = http(app).post('/post/remove');
+    var req = http(app).post('/post/remove/' + postId);
     req.cookies = shared.cookies;
     req
       .send({
-        id: postId
       })
       .expect(200, function (err, res) {
-        res.body.status.should.equal('success');
+        res.text.should.containEql('删除成功!');
         done(err);
       });
   });

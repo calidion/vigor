@@ -1,5 +1,46 @@
-.text-thread-title {
-  color: #000; }
+.text-red {
+  color: #d9534f; }
 
-.inidcator form {
-  display: inline; }
+.text-green {
+  color: #5cb85c; }
+
+.text-bright-gray {
+  color: #ccc; }
+
+.text-dark-gray {
+  color: #333; }
+
+.bg-light-gray {
+  background-color: #F9F9F9; }
+
+h5.info-bar {
+  padding-left: 5px;
+  padding-right: 5px; }
+  h5.info-bar * {
+    line-height: 20px; }
+
+p.thread-title {
+  margin: 0;
+  padding: 0;
+  border: 0; }
+
+.text-thread-title {
+  color: #000;
+  padding-left: 15px; }
+
+.post-indicator {
+  display: inline-block; }
+
+.post-indicator form,
+.indicator form {
+  display: inline-block; }
+  .post-indicator form input[type=button].nocolor,
+  .post-indicator form button.nocolor,
+  .indicator form input[type=button].nocolor,
+  .indicator form button.nocolor {
+    text-shadow: 1px 1px 1px #444;
+    background-color: inherit;
+    color: #333;
+    border: 0;
+    padding: 0;
+    margin: 0; }

@@ -15,12 +15,10 @@
       <strong>&nbsp;&nbsp;<big>{{thread.title}}</big></strong>
     </h3>
   </div>
-  <div class="container-fuild bg-info">
+  <div class="container-fuild bg-light-gray">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-8">
-        <h5 class="text-muted">
-          &nbsp;&nbsp;
-          <a href="/user/page/{{thread.author.id}}">
+        <h5 class="text-muted info-bar"><a href="/user/page/{{thread.author.id}}">
             <img src="{{thread.author.avatar}}" alt="Author Avatar" style="width:16px;height: 16px;"> {{thread.author.username}}
           </a> 发表于 • <span class="text-success">{{thread.createdAt| since}}</span> • 共 •
           <span class="text-success">
@@ -28,7 +26,7 @@
         </h5>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-4">
-        <h5 class="text-right text-muted">
+        <h5 class="text-right text-muted info-bar">
           {% if currentUser %} {% if currentUser.isAdmin %}
           <a class="text-right text-muted" href="/thread/top/{{thread.id}}" data-method="post">
           {% if thread.top  %}
@@ -82,6 +80,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-4">
         {% if currentUser.id !== thread.author.id %} {% if config.switch.chat.on === 'true' %}
+        <h5 class=" info-bar">
 
         <a class="btn text-muted" href="http://xiv.im/?chatwith={{thread.author.email}}" target="_blank">撩下ta
           <span class="label label-default btn-success">&nbsp;  <i class="fa fa-comments"></i> &nbsp;</span> 
@@ -89,10 +88,11 @@
 
         <a class="btn text-muted" href="#/tip/thread/{{thread.id}}" target="_blank">打个赏
           <span class="label label-default btn-danger">&nbsp;  <i class="fa fa-bitcoin"></i> &nbsp;</span> 
-        </a> {% endif %} {% endif %}
+        </a> 
+        </h5>{% endif %} {% endif %}
       </div>
       <div class="col-xs-12 col-sm-12 col-md-4">
-        <h5 class="text-center inidcator">
+        <h5 class="text-center indicator info-bar">
           <form action="/thread/favorite/{{thread.id}}" method="post">
             <button type="submit" class="btn btn-xs btn-warning" title="收藏">
             &nbsp;&nbsp;&nbsp;<i class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;<i>{{thread.favorites}}</i>&nbsp;&nbsp;&nbsp;
@@ -111,8 +111,8 @@
         </h5>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-4">
-        <h5>
-          {% if (thread.createdAt !== thread.updatedAt) %} <span class="pull-right"> 最后编辑于 • <i class="text-success ">
+        <h5 class="info-bar text-right">
+          {% if (thread.createdAt !== thread.updatedAt) %} <span> 最后编辑于 • <i class="text-success ">
             {{thread.updatedAt| since}}</i> • &nbsp;
           </span>{% endif %}
         </h5>
