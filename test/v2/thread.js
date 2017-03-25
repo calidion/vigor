@@ -124,6 +124,26 @@ describe('v2 thread', function () {
       });
   });
 
+  it('should favorite a thread', function (done) {
+    var req = http(app).post('/thread/favorite/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req.send({})
+      .expect(200, function (err, res) {
+        res.text.should.containEql('主题已经收藏过，不再重复收藏!');
+        done(err);
+      });
+  });
+
+  it('should not favorite a thread none existance', function (done) {
+    var req = http(app).post('/thread/favorite/0');
+    req.cookies = shared.cookies;
+    req.send({})
+      .expect(200, function (err, res) {
+        res.text.should.containEql('主题不存在或者已经被删除!');
+        done(err);
+      });
+  });
+
   it('should get /thread/favorite/:username', function (done) {
     var req = http(app).get('/thread/favorite/' + shared.user.username);
     req.expect(200, function (err, res) {
