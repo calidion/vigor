@@ -150,6 +150,7 @@ describe('v2 post', function () {
         done(err);
       });
   });
+
   it('should not remove a post', function (done) {
     var req = http(app).post('/post/remove/' + postId);
     req

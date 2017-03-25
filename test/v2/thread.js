@@ -166,6 +166,56 @@ describe('v2 thread', function () {
       });
   });
 
+  it('should like a thread', function (done) {
+    var req = http(app).post('/thread/like/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req.send({})
+      .expect(200, function (err, res) {
+        res.text.should.containEql('喜欢成功!');
+        done(err);
+      });
+  });
+
+  it('should like a thread', function (done) {
+    var req = http(app).post('/thread/like/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req.send({})
+      .expect(200, function (err, res) {
+        res.text.should.containEql('取消喜欢!');
+        done(err);
+      });
+  });
+
+  it('should like a thread', function (done) {
+    var req = http(app).post('/thread/like/100000');
+    req.cookies = shared.cookies;
+    req.send({})
+      .expect(200, function (err, res) {
+        res.text.should.containEql('主题不存在或者已经被删除!');
+        done(err);
+      });
+  });
+
+  it('should dislike a thread', function (done) {
+    var req = http(app).post('/thread/dislike/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req.send({})
+      .expect(200, function (err, res) {
+        res.text.should.containEql('不喜欢成功!');
+        done(err);
+      });
+  });
+
+  it('should dislike a thread', function (done) {
+    var req = http(app).post('/thread/dislike/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req.send({})
+      .expect(200, function (err, res) {
+        res.text.should.containEql('取消不喜欢!');
+        done(err);
+      });
+  });
+
   it('should get /thread/visit/:id 200', function (done) {
     var req = http(app).get('/thread/visit/' + shared.thread.id);
     req
