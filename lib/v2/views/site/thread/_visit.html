@@ -96,17 +96,17 @@
         <h5 class="text-center indicator info-bar">
           <form action="/thread/favorite/{{thread.id}}" method="post">
             <button type="submit" class="btn btn-xs btn-warning" title="收藏">
-            &nbsp;&nbsp;&nbsp;<i class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;<i>{{thread.favorites}}</i>&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;<i class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;<i>{% if thread.favorites %}{{thread.favorites}}{% else %}0{% endif %}</i>&nbsp;&nbsp;&nbsp;
           </button>
           </form>&nbsp;&nbsp;&nbsp;
           <form action="/thread/like/{{thread.id}}" method="post">
             <button type="submit" class="btn btn-xs btn-info" title="喜欢">
-            &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;&nbsp;<i>{{thread.likes}}</i>&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;&nbsp;<i>{% if thread.likes %}{{thread.likes}}{% else %}0{% endif %}</i>&nbsp;&nbsp;&nbsp;
           </button>
           </form>&nbsp;&nbsp;&nbsp;
           <form action="/thread/dislike/{{thread.id}}" method="post">
             <button type="submit" class="btn btn-xs btn-default" title="不喜欢">
-            &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-down"></i>&nbsp;&nbsp;&nbsp;<i>{{thread.dislikes}}</i>&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-down"></i>&nbsp;&nbsp;&nbsp;<i>{% if thread.dislikes %}{{thread.dislikes}}{% else %}0{% endif %}</i>&nbsp;&nbsp;&nbsp;
           </button>
           </form>
         </h5>
