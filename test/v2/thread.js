@@ -115,15 +115,11 @@ describe('v2 thread', function () {
   });
 
   it('should favorite a thread', function (done) {
-    var req = http(app).post('/thread/favorite');
+    var req = http(app).post('/thread/favorite/' + shared.thread.id);
     req.cookies = shared.cookies;
-    req.send({
-      id: shared.thread.id
-    })
+    req.send({})
       .expect(200, function (err, res) {
-        res.body.should.eql({
-          status: 'success'
-        });
+        res.text.should.containEql('收藏成功!');
         done(err);
       });
   });

@@ -1,3 +1,10 @@
+ {% if error %}
+<div class="alert alert-warning">
+  <a class="close" data-dismiss="alert" href="#">&times;</a>
+  <strong>{{error}}</strong>
+</div>
+{% endif %} {% if thread %}
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">
@@ -85,16 +92,22 @@
         </a> {% endif %} {% endif %}
       </div>
       <div class="col-xs-12 col-sm-12 col-md-4">
-        <h5 class="text-center">
-          <a class="btn btn-xs" title="收藏" href="/thread/favorite/{{currentUser.id}}?action=add&id={{thread.id}}">
-            <span class="label label-default btn-warning">&nbsp; <i class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;<i>0</i>&nbsp;&nbsp;&nbsp;</span>
-          </a>
-          <a class="btn btn-xs" title="喜欢" href="/thread/likes/{{thread.id}}?action=up">
-            <span class="label label-default btn-info">&nbsp;  <i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;&nbsp;<i>0</i>&nbsp;&nbsp;&nbsp;</span>
-          </a>
-          <a class="btn btn-xs" title="不喜欢" href="/thread/likes/{{thread.id}}?action=down">
-            <span class="label label-default">&nbsp;  <i class="fa fa-thumbs-down"></i>&nbsp;&nbsp;&nbsp;<i>0</i>&nbsp;&nbsp;&nbsp;</span>
-          </a>
+        <h5 class="text-center inidcator">
+          <form action="/thread/favorite/{{thread.id}}" method="post">
+            <button type="submit" class="btn btn-xs btn-warning" title="收藏">
+            &nbsp;&nbsp;&nbsp;<i class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;<i>{{thread.favorites}}</i>&nbsp;&nbsp;&nbsp;
+          </button>
+          </form>&nbsp;&nbsp;&nbsp;
+          <form action="/thread/like/{{thread.id}}" method="post">
+            <button type="submit" class="btn btn-xs btn-info" title="喜欢">
+            &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;&nbsp;<i>0</i>&nbsp;&nbsp;&nbsp;
+          </button>
+          </form>&nbsp;&nbsp;&nbsp;
+          <form action="/thread/dislike/{{thread.id}}" method="post">
+            <button type="submit" class="btn btn-xs btn-default" title="不喜欢">
+            &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-down"></i>&nbsp;&nbsp;&nbsp;<i>0</i>&nbsp;&nbsp;&nbsp;
+          </button>
+          </form>
         </h5>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-4">
@@ -141,4 +154,6 @@
 </div>
 {% else %}
 <p class="alert alert-warning">你尚未<a href="/user/login">登录</a>，无法进行回复。</p>
+{% endif %} {% else %}
+<p class="alert alert-warning">没有对应主题信息！</p>
 {% endif %}
