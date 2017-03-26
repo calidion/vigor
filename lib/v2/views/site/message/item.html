@@ -1,29 +1,63 @@
 {% macro show(message) %}
-<div class='cell {% if message.read %}message{% endif %}' message_id='{{message._id}}'>
-  {% if(message.type == 'reply') %}
-  <span>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<p></p>
+			{% if(message.type == 'reply') %}
+			<p>
+				<a href="/user/page/{{message.sender.id}}" target='_blank'>{{message.sender.username}}</a> 在 • <span>{{message.createdAt | since}}</span> • 回复了你的话题 •
+				<a href="/thread/visit/{{message.thread.id}}{% if message.post %}#post-{{message.post.id}}{% endif %}" target='_blank'>{{message.thread.title}}</a>				•
+			</p>
+			{% endif %} {% if(message.type == 'reply2') %}
+			<p>
+				<a href="/user/page/{{message.sender.id}}" target='_blank'>{{message.sender.username}}</a> 在 • <span>{{message.createdAt | since}}</span> • 回复了你在话题 •
+				<a href="/thread/visit/{{message.thread.id}}{% if message.post %}#post-{{message.post.id}}{% endif %}" target='_blank'>{{message.thread.title}}</a>				• 中的回复
+			</p>
+			{% endif %} {% if(message.type == 'follow') %}
+			<p>
+				<a href="/user/page/{{message.sender.id}}" target='_blank'>{{message.sender.username}}</a> 在 • <span>{{message.createdAt | since}}</span> • 关注了你
+			</p>
+			{% endif %} {% if (message.type == 'at') %} {% if message.post.id %}
+			<p>
+				<a href="/user/page/{{message.replier.id}}" target='_blank'>{{message.sender.username}}</a> 在 • <span>{{message.createdAt | since}}</span> • 话题 •
+				<a href="/thread/visit/{{message.thread.id}}">{{message.thread.title}}</a> • 的回复 • <a href="/thread/visit/{{message.thread.id}}{%if message.post %}#post-{{message.post.id}}{% endif %}"
+				 target='_blank'>{{message.post.id}}</a> • 中 @了你
+			</p>
+			{% elif message.thread %}
+			<p>
+				<a href="/user/page/{{message.replier.id}}" target='_blank'>{{message.sender.username}}</a> 在 • <span>{{message.createdAt | since}}</span> • 话题 •
+				<a href="/thread/visit/{{message.thread.id}}" target='_blank'>{{message.thread.title}}</a> • 中 @了你
+			</p>
+			{% endif %} {% endif %}
+		</div>
+	</div>
+</div>
+
+<!--<div class='cell {% if message.read %}message{% endif %}' message_id='{{message._id}}'>
+	{% if(message.type == 'reply') %}
+	<span>
 			<a href="/user/page/{{message.sender.id}}" target='_blank'>{{message.sender.username}}</a>
 			回复了你的话题
-			<a href="/thread/visit/{{message.thread._id}}{% if message.reply %}#{{message.reply._id}}{% endif %}" target='_blank'
+			<a href="/thread/visit/{{message.thread.id}}{% if message.reply %}#post-{{message.post.id}}{% endif %}" target='_blank'
       >{{message.thread.title}}</a>
 		</span> {% endif %} {% if(message.type == 'reply2') %}
-  <span>
+	<span>
 			<a href="/user/page/{{message.replier.id}}" target='_blank'>{{message.replier.username}}</a>
 			在话题
-			<a href="/thread/visit/{{message.thread.id}}{%if message.post %}#{{message.post.id}}{% endif %}" target='_blank'
+			<a href="/thread/visit/{{message.thread.id}}{%if message.post %}#post-{{message.post.id}}{% endif %}" target='_blank'
       >{{message.thread.title}}</a>
 			中回复了你的回复
 		</span> {% endif %} {% if(message.type == 'follow') %}
-  <span>
+	<span>
 			<a href="/user/page/{{message.sender.id}}" target='_blank'>{{message.sender.username}}</a>
 		关注了你
 	</span> {% endif %} {% if (message.type == 'at') %}
-  <span>
+	<span>
 			<a href="/user/page/{{message.replier.id}}" target='_blank'>{{message.replier.username}}</a>
 			在话题
-			<a href="/thread/visit/{{message.thread.id}}{%if message.post %}#{{message.post.id}}{% endif %}" target='_blank'
+			<a href="/thread/visit/{{message.thread.id}}{%if message.post %}#post-{{message.post.id}}{% endif %}" target='_blank'
       >{{message.thread.title}}</a>
 			中@了你
 		</span> {% endif %}
-</div>
+</div>-->
 {% endmacro %}

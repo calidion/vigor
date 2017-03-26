@@ -48,8 +48,8 @@ describe('v2 thread', function () {
         category: config.site.tabs[0][0],
         content: '木耳敲回车'
       })
-      .expect(403, function (err, res) {
-        res.text.should.containEql('新建话题');
+      .expect(200, function (err, res) {
+        res.text.should.containEql('输入不正确!');
         done(err);
       });
   });

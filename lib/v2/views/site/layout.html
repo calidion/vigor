@@ -77,7 +77,8 @@
           {% if currentUser %}
           <li>
             <a href='/my/messages'>
-              <span class='big messages_count'>{{currentUser.messages_count}}</span> <i class="fa fa-envelope"></i> 消息
+            {% if messages %}
+              <span class='badge'>{{messages}}</span>{% endif %} <i class="fa fa-envelope"></i> 消息
             </a>
           </li>
           <li class="dropdown">

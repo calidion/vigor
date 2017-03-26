@@ -62,7 +62,7 @@ describe('v2 post', function () {
         content: '木耳敲回车 @sfdsdf @forim'
       })
       .expect(302, function (err, res) {
-        var ids = /^\/thread\/visit\/(\w+)#(\w+)$/.exec(res.headers.location);
+        var ids = /^\/thread\/visit\/(\w+)#post-(\w+)$/.exec(res.headers.location);
         var threadId = ids[1];
         postId = ids[2];
         threadId.should.equal(shared.thread.id);
@@ -93,7 +93,7 @@ describe('v2 post', function () {
         parent: postId
       })
       .expect(302, function (err, res) {
-        var ids = /^\/thread\/visit\/(\w+)#(\w+)$/.exec(res.headers.location);
+        var ids = /^\/thread\/visit\/(\w+)#post-(\w+)$/.exec(res.headers.location);
         var threadId = ids[1];
         var post = ids[2];
         threadId.should.equal(shared.thread.id);

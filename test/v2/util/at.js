@@ -11,6 +11,11 @@ describe('v2 at', function () {
     });
   });
   it('should be able to purify', function () {
+    var purified = at.purify();
+    assert(purified === null);
+  });
+
+  it('should be able to purify', function () {
     var content = "```sdfsf```ooo";
     var purified = at.purify(content);
     assert(purified === 'ooo');
@@ -37,17 +42,47 @@ describe('v2 at', function () {
       models: app.models
     };
     at.parse(req, content, {
+      thread: {
+        id: '1'
+      },
       sender: {
         username: 'sdfsf',
         id: '1'
       },
-      author: {
+      receiver: {
+        username: 'sdfsf1',
+        id: '2'
+      }
+    }, function (messages) {
+      assert(messages.length >= 0);
+      done();
+    });
+  });
+
+  it('should parse', function (done) {
+    var content = "```  pre   ```aaa@ccc @ccc @sdfsdf @sdfsdfs end";
+    var req = {
+      models: app.models
+    };
+    at.parse(req, content, {
+      thread: {
+        id: '1'
+      },
+      sender: {
+        username: 'sdfsf',
+        id: '1'
+      },
+      receiver: {
         username: 'sdfsf1',
         id: '2'
       },
       replier: {
-        username: 'sdfsf2',
-        id: '3'
+        username: 'sdsdffsf1',
+        id: '2'
+      },
+      post: {
+        username: 'sdfsf1',
+        id: '2'
       }
     }, function (messages) {
       assert(messages.length >= 0);

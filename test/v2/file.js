@@ -35,8 +35,8 @@ describe('v2 file', function () {
       .attach('file', __filename)
       .expect(200)
       .end(function (err, res) {
-        res.body.success.should.eql(true);
-        res.body.url.should.containEql('http://');
+        res.body.name.should.eql('Success');
+        res.body.data.url.should.containEql('http://');
         done(err);
       });
   });

@@ -1,8 +1,12 @@
 var http = require('supertest');
 var server = require('./app');
+var assert = require('assert');
+
 var app;
 var shared = require('./shared');
 var cookies;
+
+var password = require('../../lib/v2/util/password');
 
 describe('v2 password', function () {
   before(function (done) {
@@ -10,6 +14,15 @@ describe('v2 password', function () {
       app = data;
       done();
     });
+  });
+
+  it('should update password', function (done) {
+    var func = password._getSalt(null, function (err, info) {
+      assert(err);
+      assert(info === 'salt');
+      done();
+    });
+    func(true, 'salt');
   });
 
   it('should update password', function (done) {
