@@ -29,7 +29,7 @@ describe('v2 file', function () {
   });
 
   it('should upload', function (done) {
-    var req = http(app).post('/upload');
+    var req = http(app).post('/file/upload');
     req.cookies = shared.cookies;
     req
       .attach('file', __filename)
