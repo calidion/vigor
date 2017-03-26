@@ -140,6 +140,7 @@
       <form class="form-horizontal" action="/post/create/{{thread.id}}" method="post">
         <div class="form-group">
           <div class="col-sm-12">
+            <input type="hidden" name="parent" value=""/>
             <textarea name="content" rows="12" class="form-control" placeholder="输入回复内容"></textarea>
           </div>
         </div>

@@ -9,6 +9,9 @@
     <h5 class="media-heading">
       <div class="container-fluid">
         <a href="/user/page/{{post.author.id}}">{{post.author.username}}</a>
+        {% if post.parent %}
+        回复了<a href="#post-{{post.parent}}" class="post-item" data="{{post.parent}}" title="点击查看">前回复</a>
+        {% endif %}
         <div class="pull-right post-indicator">
           {% if user %} {% if (user.id === post.author.id) %}
           <form action="/post/edit/{{post.id}}" method="GET">
@@ -20,7 +23,7 @@
             </button>
           </form>
           | {% endif %} {% endif %} {{post.createdAt | since}} &nbsp;
-          <a href="#post-{{post.id}}"># {{i}}</a> 楼
+          <a href="#post-{{post.id}}" class="post-item" data="{{post.id}}"># {{i}}</a> 楼
         </div>
       </div>
     </h5>

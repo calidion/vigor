@@ -11,7 +11,9 @@
 			{% endif %} {% if(message.type == 'reply2') %}
 			<p>
 				<a href="/user/page/{{message.sender.id}}" target='_blank'>{{message.sender.username}}</a> 在 • <span>{{message.createdAt | since}}</span> • 回复了你在话题 •
-				<a href="/thread/visit/{{message.thread.id}}{% if message.post %}#post-{{message.post.id}}{% endif %}" target='_blank'>{{message.thread.title}}</a>				• 中的回复
+				<a href="/thread/visit/{{message.thread.id}}" target='_blank'>{{message.thread.title}}</a>				• 中的回复
+				• <a href="/thread/visit/{{message.thread.id}}{%if message.post %}#post-{{message.post.id}}{% endif %}"
+				 target='_blank'>{{message.post.id}}</a> • 
 			</p>
 			{% endif %} {% if(message.type == 'follow') %}
 			<p>
