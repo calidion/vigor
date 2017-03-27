@@ -8,12 +8,12 @@
   <div class="media-body">
     <h5 class="media-heading">
       <div class="container-fluid">
-        <a href="/user/page/{{post.author.id}}">{{post.author.username}}</a>
-        {% if post.parent %}
-        回复了<a href="#post-{{post.parent}}" class="post-item" data="{{post.parent}}" title="点击查看">前回复</a>
-        {% endif %}
+        <a href="/user/page/{{post.author.id}}">{{post.author.username}}</a> {% if post.parent %} 回复了
+        <a href="#post-{{post.parent}}" class="post-item" data="{{post.parent}}" title="点击查看">前回复</a> {% endif %}
         <div class="pull-right post-indicator">
-          {% if user %} {% if (user.id === post.author.id) %}
+          <a class="text-danger" href="/tip/post/{{post.id}}" target="_blank">给他打个赏
+           <i class="glyphicon glyphicon-yen"></i>
+        </a> {% if user %} {% if (user.id === post.author.id) %}
           <form action="/post/edit/{{post.id}}" method="GET">
             <button type="submit" class="nocolor"><i class="glyphicon glyphicon-edit text-info" title="编辑"></i></button>
           </form>

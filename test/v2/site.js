@@ -17,7 +17,6 @@ describe('v2 site', function () {
       .end(function (err, res) {
         res.status.should.equal(200);
         res.text.should.containEql('首页');
-        res.text.should.containEql('RSS');
         done(err);
       });
   });
@@ -31,7 +30,6 @@ describe('v2 site', function () {
       .end(function (err, res) {
         res.status.should.equal(200);
         res.text.should.containEql('首页');
-        res.text.should.containEql('RSS');
         done(err);
       });
   });

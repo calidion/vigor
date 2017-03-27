@@ -55,11 +55,10 @@
             <i class="fa fa-lg fa-pencil-square-o" title="编辑"></i></a>
           <a class="text-right text-muted" href="/thread/remove/{{thread.id}}">
             <i class="fa fa-lg fa-trash" title="删除"></i></a>
-          {% else %} {% if (currentUser.id === thread.author.id) %} {% if config.switch.pay.on === 'true' %}
-          <a class="text-right text-muted" href="/thread/pay/{{thread.id}}">
-            <span class="glyphicon glyphicon-yuan" title="悬赏"></span>悬赏
-          </a>
-          {% endif %}
+          {% else %} {% if (currentUser.id === thread.author.id) %}
+          <a class="text-right text-danger" href="/thread/pay/{{thread.id}}">
+            <span class="glyphicon glyphicon-yen" title="红包"></span>塞个红包
+          </a>&nbsp;
           <a class="text-right text-muted" href="/thread/edit/{{thread.id}}">
             <span class="glyphicon glyphicon-edit" title="编辑"></span>
           </a>
@@ -80,32 +79,37 @@
   <div class="container-fuild">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-4">
-        {% if currentUser.id !== thread.author.id %} {% if config.switch.chat.on === 'true' %}
+        {% if currentUser.id !== thread.author.id %}
         <h5 class=" info-bar">
-
+          {% if config.switch.chat.on === 'true' %}
           <a class="btn text-muted" href="http://xiv.im/?chatwith={{thread.author.email}}" target="_blank">撩下ta
           <span class="label label-default btn-success">&nbsp;  <i class="fa fa-comments"></i> &nbsp;</span> 
-        </a> {% endif %} {% if config.switch.tip.on === 'true' %}
+        </a> {% endif %}
           <a class="btn text-muted" href="#/tip/thread/{{thread.id}}" target="_blank">打个赏
-          <span class="label label-default btn-danger">&nbsp;  <i class="fa fa-bitcoin"></i> &nbsp;</span> 
+          <span class="label label-default btn-danger">&nbsp;  <i class="fa fa-rmb"></i> &nbsp;</span> 
         </a>
-        </h5>{% endif %} {% endif %}
+        </h5> {% endif %}
       </div>
       <div class="col-xs-12 col-sm-12 col-md-4">
         <h5 class="text-center indicator info-bar">
           <form action="/thread/favorite/{{thread.id}}" method="post">
             <button type="submit" class="btn btn-xs btn-warning" title="收藏">
-            &nbsp;&nbsp;&nbsp;<i class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;<i>{% if thread.favorites %}{{thread.favorites}}{% else %}0{% endif %}</i>&nbsp;&nbsp;&nbsp;
+            <i class="fa fa-star"></i><i>{% if thread.favorites %}{{thread.favorites}}{% else %}0{% endif %}</i>
           </button>
-          </form>&nbsp;&nbsp;&nbsp;
+          </form>
           <form action="/thread/like/{{thread.id}}" method="post">
             <button type="submit" class="btn btn-xs btn-info" title="喜欢">
-            &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;&nbsp;<i>{% if thread.likes %}{{thread.likes}}{% else %}0{% endif %}</i>&nbsp;&nbsp;&nbsp;
+            <i class="fa fa-thumbs-up"></i><i>{% if thread.likes %}{{thread.likes}}{% else %}0{% endif %}</i>
           </button>
-          </form>&nbsp;&nbsp;&nbsp;
+          </form>
           <form action="/thread/dislike/{{thread.id}}" method="post">
             <button type="submit" class="btn btn-xs btn-default" title="不喜欢">
-            &nbsp;&nbsp;&nbsp;<i class="fa fa-thumbs-down"></i>&nbsp;&nbsp;&nbsp;<i>{% if thread.dislikes %}{{thread.dislikes}}{% else %}0{% endif %}</i>&nbsp;&nbsp;&nbsp;
+            <i class="fa fa-thumbs-down"></i><i>{% if thread.dislikes %}{{thread.dislikes}}{% else %}0{% endif %}</i>
+          </button>
+          </form>
+          <form action="/thread/invite/{{thread.id}}" method="post">
+            <button type="submit" class="btn btn-xs btn-danger" title="邀请回答">
+            <i class="fa fa-user-plus"></i><i>{% if thread.invites %}{{thread.invites}}{% else %}0{% endif %}</i>
           </button>
           </form>
         </h5>
@@ -140,7 +144,7 @@
       <form class="form-horizontal" action="/post/create/{{thread.id}}" method="post">
         <div class="form-group">
           <div class="col-sm-12">
-            <input type="hidden" name="parent" value=""/>
+            <input type="hidden" name="parent" value="" />
             <textarea name="content" rows="12" class="form-control" placeholder="输入回复内容"></textarea>
           </div>
         </div>

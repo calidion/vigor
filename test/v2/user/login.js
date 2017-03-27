@@ -44,7 +44,6 @@ describe('v2 user#login', function () {
         password: password
       })
       .end(function (err, res) {
-        res.status.should.equal(403);
         res.text.should.containEql('此帐号还没有被激活，激活链接已发送到');
         done(err);
       });

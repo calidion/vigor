@@ -1,5 +1,7 @@
 $(document).ready(function () {
-  var simplemde = new SimpleMDE({ element: $("[data-provide=markdown]")[0] });
+  if ($("[data-provide=markdown]")[0]) {
+    var simplemde = new SimpleMDE({ element: $("[data-provide=markdown]")[0] });
+  }
 
   $('a.post-item').click(function () {
     var data = $(this).attr('data');

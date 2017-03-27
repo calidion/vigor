@@ -60,84 +60,8 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-default navbar-static-top">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#links" aria-expanded="false">
-        <span class="sr-only"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-        <a class="navbar-brand" href="/">{{config.site.title}}</a>
-      </div>
-      <div class="collapse navbar-collapse" id="links">
-        <form id='search_form' class='navbar-form navbar-left navbar-search' action="/search">
-          <div class="form-group">
-            <input type='text' id='q' name='q' class='form-control' value='' />
-          </div>
-          <button type="submit" class="btn btn-default">搜索</button>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href='/'>首页</a>
-          </li>
-          {% if currentUser %}
-          <li>
-            <a href='/my/messages'>
-            {% if messages %}
-              <span class='badge'>{{messages}}</span>{% endif %} <i class="fa fa-envelope"></i> 消息
-            </a>
-          </li>
-          <li class="dropdown">
-            <a id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-              <i class="fa fa-sitemap"></i> 社区
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dLabel">
-              <li>
-                <a href='/user/star' data-method="post" rel="nofollow"><i class="fa fa-star"></i>&nbsp;&nbsp;达人</a>
-              </li>
-              <li>
-                <a href='/user/top' data-method="post" rel="nofollow"><i class="fa fa-arrow-up"></i>&nbsp;&nbsp;排名</a>
-              </li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-              <i class="fa fa-user"></i> 我的
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dLabel">
-              <li>
-                <a href='/user/settings' data-method="post" rel="nofollow"><i class="fa fa-user"></i>&nbsp;&nbsp;个人资料</a>
-              </li>
-              <li>
-                <a href='/thread/user/{{currentUser.id}}' data-method="post" rel="nofollow"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;发表的帖子</a>
-                <a href='/post/user/{{currentUser.id}}' data-method="post" rel="nofollow"><i class="fa fa-commenting"></i>&nbsp;&nbsp;参与的帖子</a>
-              </li>
-              <li>
-                <a href='/thread/favorite/{{currentUser.id}}' data-method="post" rel="nofollow"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;收藏</a>
-              </li>
-              <li>
-                <a href='/user/logout' data-method="post" rel="nofollow"><i class="fa fa-power-off"></i>&nbsp;&nbsp;退出</a>
-              </li>
-            </ul>
-          </li>
+  {% block nav %} {% include "./nav.html" %} {% endblock %}
 
-          {% else %} {% if config.switch.registration.on === 'true' %}
-          <li>
-            <a href='/user/register'>注册</a>
-          </li>
-          <li>
-            <a href='/user/login'>登录</a>
-          </li>
-          {% endif %} {% endif %}
-        </ul>
-      </div>
-    </div>
-  </nav>
   <div id='main'>
     <div class="container-fluid">
       <div class="row">
@@ -148,29 +72,7 @@
       </div>
     </div>
   </div>
-  <nav class="navbar navbar-default navbar-static-bottom">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6">
-          <p class="navbar-text">Powered By <a href="https://github.com/calidion/vig">vig</a></p>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6">
-          <ul class="nav navbar-nav navbar-right">
-            <!--<li><a href="#">回到顶部</a>
-            </li>-->
-            <!--<li>
-              <a href='/rss'>RSS</a>
-            </li>-->
-            <li>
-              <a href='https://github.com/calidion/server.xiv.im'>源码地址</a>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-
-    </div>
-  </nav>
+    {% block footer %} {% include "./footer.html" %} {% endblock %}
   {% block analytics %} {% endblock %}
 </body>
 
