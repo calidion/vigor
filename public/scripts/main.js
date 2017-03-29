@@ -29,6 +29,13 @@ $(document).ready(function () {
       var clone = prototype.clone();
       $('strong', clone).html(item);
       $('.gurus').append(clone);
+      $(clone).click(function () {
+        emails = emails.filter(function (value, idx) {
+          console.log(item);
+          return value !== item;
+        });
+        console.log(emails);
+      });
     });
   }
 
@@ -38,26 +45,24 @@ $(document).ready(function () {
     if (email) {
       addEmail(email);
     }
-    $('.btn-invite').click(function () {
-      var formData = new FormData($('.invite-form')[0]);
-      // formData.append("emails[]", emails);
-      console.log(formData);
-      emails.forEach(function (item) {
-        formData.append("emails", item);
-      });
-      $.ajax({
-        method: 'POST',
-        url: '',
-        data: formData,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-          console.log(data);
-        }
-      });
-      return false;
+  });
+  $('.btn-invite').click(function () {
+    var formData = new FormData($('.invite-form')[0]);
+    emails.forEach(function (item) {
+      formData.append("emails", item);
     });
+    $.ajax({
+      method: 'POST',
+      url: '',
+      data: formData,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function (data) {
+        console.log(data);
+      }
+    });
+    return false;
   });
 
   // github 
