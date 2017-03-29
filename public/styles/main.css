@@ -19,6 +19,19 @@
   font-weight: normal;
   padding: 1px 5px; }
 
+.navbar-brand > img.nav-brand-image {
+  display: inline-block;
+  width: 20px;
+  height: 20px; }
+
+.gurus > div {
+  display: inline-block;
+  padding: 3px 15px 3px 5px;
+  margin: 3px; }
+  .gurus > div button.close {
+    left: 10px;
+    top: -3px; }
+
 .bg-light-gray {
   background-color: #F9F9F9; }
 
@@ -28,11 +41,17 @@ h5.info-bar {
   h5.info-bar * {
     line-height: 20px; }
   h5.info-bar form {
-    display: inline-block; }
+    display: inline-block;
+    margin-top: 5px; }
     h5.info-bar form button[type=submit].btn {
       margin: 0 5px;
       padding: 0 10px; }
       h5.info-bar form button[type=submit].btn i {
+        padding: 0 3px; }
+    h5.info-bar form .btn-xs {
+      margin: 0 5px;
+      padding: 0 10px; }
+      h5.info-bar form .btn-xs i {
         padding: 0 3px; }
 
 p.thread-title {

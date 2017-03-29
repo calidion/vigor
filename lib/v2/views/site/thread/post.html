@@ -1,4 +1,4 @@
-{% macro show(post, i, user) %}
+{% macro show(post, i, user, thread) %}
 <div class="media" id="post-{{post.id}}">
   <div class="media-left">
     <a href="/user/page/{{post.author.id}}">
@@ -8,23 +8,32 @@
   <div class="media-body">
     <h5 class="media-heading">
       <div class="container-fluid">
-        <a href="/user/page/{{post.author.id}}">{{post.author.username}}</a> {% if post.parent %} 回复了
-        <a href="#post-{{post.parent}}" class="post-item" data="{{post.parent}}" title="点击查看">前回复</a> {% endif %}
-        <div class="pull-right post-indicator">
-          <a class="text-danger" href="/tip/post/{{post.id}}" target="_blank">给他打个赏
+        <div class="row">
+          <div class="col-sm-12 col-xs-12 col-md-6">
+            <a href="/user/page/{{post.author.id}}">{{post.author.username}}</a> {% if post.author.id === thread.author.id
+            %}
+            <span class="badge">楼主</span> {% endif %} {% if post.parent %} 回复了
+            <a href="#post-{{post.parent}}" class="post-item" data="{{post.parent}}" title="点击查看"># {{post.parent}}</a>         {% endif %}
+          </div>
+          <div class="col-sm-12 col-xs-12 col-md-6">
+            <div class="pull-right post-indicator">
+              <a class="text-danger" href="/tip/post/{{post.id}}" target="_blank">给他打个赏
            <i class="glyphicon glyphicon-yen"></i>
         </a> {% if user %} {% if (user.id === post.author.id) %}
-          <form action="/post/edit/{{post.id}}" method="GET">
-            <button type="submit" class="nocolor"><i class="glyphicon glyphicon-edit text-info" title="编辑"></i></button>
-          </form>
-          <form action="/post/remove/{{post.id}}" method="POST" onsubmit="return confirm('操作不可恢复，确定要删除当前的回复吗？');">
-            <button type="submit" class="nocolor">
+              <form action="/post/edit/{{post.id}}" method="GET">
+                <button type="submit" class="nocolor"><i class="glyphicon glyphicon-edit text-info" title="编辑"></i></button>
+              </form>
+              <form action="/post/remove/{{post.id}}" method="POST" onsubmit="return confirm('操作不可恢复，确定要删除当前的回复吗？');">
+                <button type="submit" class="nocolor">
             <i class="glyphicon glyphicon-trash text-warning" title="删除"></i>
             </button>
-          </form>
-          | {% endif %} {% endif %} {{post.createdAt | since}} &nbsp;
-          <a href="#post-{{post.id}}" class="post-item" data="{{post.id}}"># {{i}}</a> 楼
+              </form>
+              | {% endif %} {% endif %} {{post.createdAt | since}} &nbsp;
+              <a href="#post-{{post.id}}" class="post-item" data="{{post.id}}"># {{post.id}}</a> {{i}} 楼
+            </div>
+          </div>
         </div>
+
       </div>
     </h5>
     <div>

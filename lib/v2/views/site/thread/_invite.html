@@ -1,0 +1,73 @@
+ {% if error %}
+<div class="alert alert-warning">
+  <a class="close" data-dismiss="alert" href="#">&times;</a>
+  <strong>{{error}}</strong>
+</div>
+{% endif %} {% if thread %}
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title text-center">
+      大牛邀请
+    </h3>
+  </div>
+  <div class="panel-body">
+    <p class="alert alert-success">
+      需解答问题：<a href="/thread/visit/{{thread.id}}" class="alert-link" data-toggle="tooltip" data-placement="bottom" title="{{thread.content}}"><strong>{{thread.title}}</strong></a>
+    </p>
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#github" aria-controls="github" role="tab" data-toggle="tab">通过github</a></li>
+      <li role="presentation"><a href="#email" aria-controls="email" role="tab" data-toggle="tab">通过邮箱</a></li>
+    </ul>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="github">
+        <form>
+          <br/>
+          <div class="form-group">
+            <label for="users">点击选择大牛: </label>
+            <div><button type="button" class="btn btn-xs btn-default pull-right guru-refresh">随机获取新的大牛列表</button></div>
+            <select multiple class="form-control github-guru-selector" name="githubusers"></select>
+          </div>
+        </form>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="email">
+        <form>
+          <br/>
+          <!--<label for="email">请输入你要邀请的大牛邮箱</label>-->
+          <div class="form-group">
+            <input type="email" class="form-control email-guru" placeholder="请输入你要邀请的大牛邮箱">
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-default add-email">添加到邀请列表</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <hr/>
+    <form class="invite-form" method="POST">
+      <div class="form-group">
+        <button type="button" class="btn btn-default btn-invite">邀请</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">受邀请大牛列表
+    </div>
+    <div class="panel-body">
+      <div class="alert alert-danger error-get-email hidden" role="alert">
+        大牛<strong></strong>的邮件没有公开，请通过<span>邮件方式</span>邀请。谢谢。
+      </div>
+      <div class="gurus">
+        尚无选择的牛人
+      </div>
+      <div class="hidden gurus-prototype">
+        <div class="alert alert-warning alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <span class="glyphicon glyphicon-user"></span> <strong>calidion@gmail.com</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

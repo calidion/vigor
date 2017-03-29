@@ -46,14 +46,15 @@
   <title>
     {{ topic.title }} - {{ config.site.name}}
   </title>
-  {% elif pageTitle %}
+  {% elif title %}
   <title>
-    {{ pageTitle}} - {{config.site.title}}
+    {{ title }} - {{config.site.title}}
   </title>
   {% else %}
   <title>
     {{config.site.description}}
   </title>
+
   {% endif %}
   <meta content="_csrf" name="csrf-param" />
   <meta content="{{csrf}}" name="csrf-token" />

@@ -8,7 +8,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">{{config.site.title}}</a>
+      <a class="navbar-brand" href="/"> 
+      {% if config.site.logo %}<img class="nav-brand-image" alt="Brand" src="{{config.site.logo}}"> {% endif %}{{config.site.title}}
+      </a>
     </div>
     <div class="collapse navbar-collapse" id="links">
       <form id='search_form' class='navbar-form navbar-left navbar-search' action="/search">

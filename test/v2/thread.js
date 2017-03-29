@@ -22,7 +22,7 @@ describe('v2 thread', function () {
         cookies = res.headers['set-cookie']
           .map(function (r) {
             return r.replace(re, '');
-          }).join("; ");
+          }).join('; ');
         shared.cookies = cookies;
         res.status.should.equal(302);
         res.headers.location.should.equal('/');
@@ -232,6 +232,53 @@ describe('v2 thread', function () {
       .expect(200, function (err, res) {
         res.text.should.containEql('修改修改的内容!');
         res.text.should.containEql(shared.user.username);
+        done(err);
+      });
+  });
+
+  it('should invite a thread 1', function (done) {
+    var req = http(app).get('/thread/invite/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req.send({})
+      .expect(200, function (err, res) {
+        res.text.should.containEql('请输入你要邀请的大牛邮箱');
+        res.text.should.containEql('受邀请大牛列表');
+        res.text.should.containEql('尚无选择的牛人');
+        done(err);
+      });
+  });
+
+  it('should invite a thread 2', function (done) {
+    var req = http(app).get('/thread/invite/1000');
+    req.cookies = shared.cookies;
+    req.send({})
+      .expect(200, function (err, res) {
+        res.text.should.containEql('此话题不存在或已被删除。');
+        done(err);
+      });
+  });
+
+  it('should post a thread', function (done) {
+    var req = http(app).post('/thread/invite/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req.field('emails', 'calidion@gmail.com');
+    req.field('emails', 'calidion1@gmail.com');
+    req.expect(200, function (err, res) {
+      res.text.should.containEql('成功');
+      done(err);
+    });
+  });
+
+  it('should invite a thread 2', function (done) {
+    var req = http(app).post('/thread/invite/1000');
+    req.cookies = shared.cookies;
+    req.send({})
+      .expect(200, function (err, res) {
+        res.body.should.containDeepOrdered({
+          code: 2,
+          name: 'InputInvalid',
+          message: '输入无效!'
+        });
         done(err);
       });
   });
