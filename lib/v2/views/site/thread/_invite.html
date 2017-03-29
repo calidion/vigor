@@ -16,10 +16,16 @@
       需解答问题：<a href="/thread/visit/{{thread.id}}" class="alert-link" data-toggle="tooltip" data-placement="bottom" title="{{thread.content}}"><strong>{{thread.title}}</strong></a>
     </p>
     <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#github" aria-controls="github" role="tab" data-toggle="tab">通过github</a></li>
+      {% if config.switch.oauth.github === 'true' %}
+      <li role="presentation"><a href="#github" aria-controls="github" role="tab" data-toggle="tab">通过github</a></li>
       <li role="presentation"><a href="#email" aria-controls="email" role="tab" data-toggle="tab">通过邮箱</a></li>
+      {% else %}
+      <li role="presentation" class="active"><a href="#email" aria-controls="email" role="tab" data-toggle="tab">通过邮箱</a></li>
+      {% endif %}
     </ul>
     <div class="tab-content">
+      {% if config.switch.oauth.github === 'true' %}
+
       <div role="tabpanel" class="tab-pane active" id="github">
         <form>
           <br/>
@@ -42,6 +48,20 @@
           </div>
         </form>
       </div>
+      {% else %}
+      <div role="tabpanel" class="tab-pane active" id="email">
+        <form>
+          <br/>
+          <!--<label for="email">请输入你要邀请的大牛邮箱</label>-->
+          <div class="form-group">
+            <input type="email" class="form-control email-guru" placeholder="请输入你要邀请的大牛邮箱">
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-default add-email">添加到邀请列表</button>
+          </div>
+        </form>
+      </div>
+      {% endif %}
     </div>
     <hr/>
     <form class="invite-form" method="POST">
