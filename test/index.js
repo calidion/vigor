@@ -4,6 +4,7 @@ require('should');
 // process.env.LOG_QUERIES = true;
 
 describe('forim', function () {
+  require('./pages/category');
   require('./v2/github');
   require('./v2/user');
   require('./v2/message');
