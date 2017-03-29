@@ -59,7 +59,11 @@ $(document).ready(function () {
       contentType: false,
       processData: false,
       success: function (data) {
-        console.log(data);
+        if (data && !data.code) {
+          alert('邀请成功!');
+        } else {
+          alert('邀请失败!');
+        }
       }
     });
     return false;

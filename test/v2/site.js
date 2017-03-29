@@ -42,4 +42,14 @@ describe('v2 site', function () {
       done(err);
     });
   });
+
+  it('should be able to handler letenc autho', function (done) {
+    process.env.FORIM_LETSENC_VALUE = 'sdofosdfodf';
+    var req = http(app).get('/.well-known/acme-challenge/sdfosofdosdoffd');
+    req.end(function (err, res) {
+      res.status.should.equal(200);
+      res.text.should.containEql(process.env.FORIM_LETSENC_VALUE);
+      done(err);
+    });
+  });
 });
