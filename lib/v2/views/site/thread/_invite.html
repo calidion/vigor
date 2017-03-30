@@ -13,7 +13,7 @@
   </div>
   <div class="panel-body">
     <p class="alert alert-success">
-      需解答问题：<a href="/thread/visit/{{thread.id}}" class="alert-link" data-toggle="tooltip" data-placement="bottom" title="{{thread.content}}"><strong>{{thread.title}}</strong></a>
+      需解答问题：<a href="/thread/visit/{{thread.id}}" class="alert-link" data-toggle="tooltip" data-placement="bottom" title="{{thread.content | urlencode}}"><strong>{{thread.title}}</strong></a>
     </p>
     <ul class="nav nav-tabs" role="tablist">
       {% if config.switch.oauth.github === 'true' %}
