@@ -79,3 +79,7 @@ p.thread-title {
     border: 0;
     padding: 0;
     margin: 0 5px; }
+
+code[class*=language-],
+pre[class*=language-] {
+  font-family: monospace; }

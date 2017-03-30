@@ -29,17 +29,15 @@
             </button>
               </form>
               | {% endif %} {% endif %} {{post.createdAt | since}} &nbsp;
-              <a href="#post-{{post.id}}" class="post-item" data="{{post.id}}"># {{post.id}}</a> {{i}} 楼
+              <a href="#post-{{post.id}}" class="post-item" data="{{post.id}}"># {{i}} 楼</a>
             </div>
           </div>
         </div>
-
       </div>
     </h5>
     <div>
       {{post.content | markdown}}
     </div>
-
   </div>
 </div>
 {% endmacro %}

@@ -102,3 +102,8 @@ p.thread-title {
         }
     }
 }
+
+code[class*=language-],
+pre[class*=language-] {
+    font-family: monospace;
+}

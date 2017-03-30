@@ -20,13 +20,13 @@
         <a>{{page}}</a>
       </li>
       {% if ((page + 1)
-      < total) %} <li><a href="/?page={{page+1}}">{{page+1}}</a></li>
+      <= total) %} <li><a href="/?page={{page+1}}">{{page+1}}</a></li>
         {% endif %} {% if ((page + 2)
-        < total) %} <li><a href="/?page={{page+2}}">{{page+2}}</a></li>
+        <= total) %} <li><a href="/?page={{page+2}}">{{page+2}}</a></li>
           {% endif %} {% if ((page + 3)
-          < total) %} <li><a href="/?page={{page+3}}">{{page+3}}</a></li>
+          <= total) %} <li><a href="/?page={{page+3}}">{{page+3}}</a></li>
             {% endif %} {% if ((page + 5)
-            < total) %} <li><a>...</a></li>
+            <= total) %} <li><a>...</a></li>
               {% endif %} {% if ((page + 1) > total ) %}
               <li class='disabled'><a>&gt;</a></li>
               {% else %}
