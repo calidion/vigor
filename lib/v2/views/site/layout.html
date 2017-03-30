@@ -24,8 +24,9 @@
     crossorigin="anonymous">
 
   <link href="https://cdn.bootcss.com/prism/1.6.0/themes/prism.min.css" rel="stylesheet">
-  <link href="/statics/styles/main.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+
+  <link href="/statics/styles/main.css" rel="stylesheet">
 
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -73,8 +74,7 @@
       </div>
     </div>
   </div>
-    {% block footer %} {% include "./footer.html" %} {% endblock %}
-  {% block analytics %} {% endblock %}
+  {% block footer %} {% include "./footer.html" %} {% endblock %} {% block analytics %} {% endblock %}
 </body>
 
 </html>

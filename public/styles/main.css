@@ -83,3 +83,6 @@ p.thread-title {
 code[class*=language-],
 pre[class*=language-] {
   font-family: monospace; }
+
+.CodeMirror .cm-spell-error:not(.cm-url):not(.cm-comment):not(.cm-tag):not(.cm-word) {
+  background: inherit; }
