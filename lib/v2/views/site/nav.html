@@ -23,12 +23,8 @@
         <li>
           <a href='/'>首页</a>
         </li>
-        {% if currentUser %}
         <li>
-          <a href='/my/messages'>
-            <i class="fa fa-envelope"></i> 消息 {% if messages %}
-            <sup class='badge badge-sup badge-danger'>{{messages}}</sup>{% endif %}
-          </a>
+          <a href='http://xiv.im' target="_blank">聊天</a>
         </li>
         <li class="dropdown">
           <a id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
@@ -43,6 +39,13 @@
               <a href='/user/top' data-method="post" rel="nofollow"><i class="fa fa-arrow-up"></i>&nbsp;&nbsp;排名</a>
             </li>
           </ul>
+        </li>
+        {% if currentUser %}
+        <li>
+          <a href='/my/messages'>
+            <i class="fa fa-envelope"></i> 消息 {% if messages %}
+            <sup class='badge badge-sup badge-danger'>{{messages}}</sup>{% endif %}
+          </a>
         </li>
         <li class="dropdown">
           <a id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
