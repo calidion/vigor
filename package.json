@@ -65,6 +65,7 @@
     "errorable-express": "0.0.4",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "express-ws": "^3.0.0",
     "file-cloud-uploader": "0.0.5",
     "github": "^7.0.1",
     "lodash": "^4.12.0",

@@ -5,6 +5,7 @@ require('should');
 
 describe('forim', function () {
   require('./pages/filters');
+  require('./ws/main');
   require('./v2/failures/notLogin');
   require('./v2/github');
   require('./v2/user');
