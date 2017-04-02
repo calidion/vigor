@@ -82,4 +82,13 @@ describe('letenc', function () {
       done(err);
     });
   });
+
+  it('should be able to search ', function (done) {
+    var req = http(app).get('/search?q=asdf');
+    req.expect(302, function (err, res) {
+      console.log(err, res.header);
+      res.header.location.should.containEql('https://www.google.com.hk');
+      done(err);
+    });
+  });
 });

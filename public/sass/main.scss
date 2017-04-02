@@ -46,6 +46,19 @@
     background-color: #F9F9F9;
 }
 
+.bg-light-blue {
+    background-color: #FAFAFF;
+}
+
+.redbag-info {
+    margin: 3px 20px 0px 20px;
+}
+
+.qrcode256x256 {
+    width: 256px;
+    height: 256px;
+}
+
 h5.info-bar {
     padding-left: 5px;
     padding-right: 5px;
@@ -54,7 +67,7 @@ h5.info-bar {
     }
     form {
         display: inline-block;
-        margin-top: 5px;
+        // margin-top: 5px;
         button[type=submit].btn {
             margin: 0 5px;
             padding: 0 10px;

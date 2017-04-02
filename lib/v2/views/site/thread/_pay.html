@@ -1,0 +1,84 @@
+ {% if error %}
+<div class="alert alert-warning">
+  <a class="close" data-dismiss="alert" href="#">&times;</a>
+  <strong>{{error}}</strong>
+</div>
+{% endif %} {% if redbag %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">
+      支付红包
+    </h1>
+  </div>
+  <div class="panel-body">
+    <img src="..." alt="..." class="img-thumbnail">
+  </div>
+</div>
+
+{% else %} {% if thread %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">
+      添加红包
+    </h1>
+  </div>
+  <div class="panel-body">
+    <p class="text-warning">您正在添加红包...</p>
+    <!--<h3 class="text-success text-center">{{thread.title}}</span></h3>-->
+    <form class="form-horizontal" action="" method="POST">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">红包主题</label>
+        <div class="col-sm-9 text-info">
+          <p class="form-control-static">{{thread.title}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="value" class="col-sm-3 control-label">红包金额</label>
+        <div class="col-sm-4">
+          <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-yen"></span></div>
+            <input type="currency" name="value" class="form-control text-right" required id="value" placeholder="输入你要添加的红包金额" />
+            <div class="input-group-addon">.00</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="value" class="hidden-xs col-sm-3 control-label text-muted">快捷输入</label>
+        <div class="col-sm-4">
+          <button type="button" class="btn btn-default redbag-button" value="5">
+            <span class="glyphicon glyphicon-yen"></span>5.00元
+          </button>
+          <button type="button" class="btn btn-default redbag-button" value="10">
+            <span class="glyphicon glyphicon-yen"></span>10.00元
+          </button>
+          <button type="button" class="btn btn-default redbag-button" value="20">
+            <span class="glyphicon glyphicon-yen"></span>20.00元
+          </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="value" class="hidden-xs col-sm-3 control-label"></label>
+        <div class="col-sm-6">
+          <button type="button" class="btn btn-default redbag-button" value="50">
+            <span class="glyphicon glyphicon-yen"></span>50.00元
+          </button>
+          <button type="button" class="btn btn-default redbag-button" value="100">
+            <span class="glyphicon glyphicon-yen"></span>100.00元
+          </button>
+          <button type="button" class="btn btn-default redbag-button" value="200">
+            <span class="glyphicon glyphicon-yen"></span>200.00元
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-6">
+          <button type="submit" class="btn btn-danger redbag-submit">放入红包<span class="glyphicon glyphicon-yen"></span></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% else %}
+<p class="alert alert-warning">没有对应主题信息！</p>
+{% endif %} {% endif %}

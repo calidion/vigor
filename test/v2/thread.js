@@ -258,13 +258,28 @@ describe('v2 thread', function () {
       });
   });
 
-  it('should post a thread', function (done) {
+  it('should post an invitation', function (done) {
     var req = http(app).post('/thread/invite/' + shared.thread.id);
     req.cookies = shared.cookies;
     req.field('emails', 'calidion@gmail.com');
     req.field('emails', 'calidion1@gmail.com');
     req.expect(200, function (err, res) {
       res.text.should.containEql('成功');
+      done(err);
+    });
+  });
+
+  it('should post a thread', function (done) {
+    var req = http(app).post('/thread/invite/10086');
+    req.cookies = shared.cookies;
+    req.field('emails', 'calidion@gmail.com');
+    req.field('emails', 'calidion1@gmail.com');
+    req.expect(200, function (err, res) {
+      res.body.should.containDeepOrdered({
+        code: "ThreadNotExists",
+        name: "ThreadNotExists",
+        message: "线程不存在！"
+      });
       done(err);
     });
   });
@@ -311,6 +326,7 @@ describe('v2 thread', function () {
         done(err);
       });
   });
+
   it('should unstick a thread', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app).post('/thread/stick/' + shared.thread.id);
@@ -344,6 +360,7 @@ describe('v2 thread', function () {
         done(err);
       });
   });
+
   it('should lock a thread', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app).post('/thread/lock/' + shared.thread.id);
@@ -354,6 +371,7 @@ describe('v2 thread', function () {
         done(err);
       });
   });
+
   it('should unlock a thread', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = http(app).post('/thread/lock/' + shared.thread.id);
@@ -361,6 +379,55 @@ describe('v2 thread', function () {
     req
       .expect(200, function (err, res) {
         res.text.should.containEql('话题取消锁定成功！');
+        done(err);
+      });
+  });
+
+  it('should pay a thread', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 1;
+    var req = http(app).get('/thread/pay/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req
+      .expect(200, function (err, res) {
+        res.text.should.containEql('您正在添加红包...');
+        done(err);
+      });
+  });
+
+  it('should pay a thread', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 1;
+    var req = http(app).post('/thread/pay/' + shared.thread.id);
+    req.cookies = shared.cookies;
+    req.send({
+      value: 10
+    })
+      .expect(302, function (err, res) {
+        shared.redbag = {
+          url: res.headers.location
+        };
+        res.headers.location.should.containEql('/thread/redbag/');
+        done(err);
+      });
+  });
+
+  it('should pay a redbag', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 1;
+    var req = http(app).get(shared.redbag.url);
+    req.cookies = shared.cookies;
+    req
+      .expect(200, function (err, res) {
+        res.text.should.containEql('正在给红包充值...');
+        done(err);
+      });
+  });
+
+  it('should not be able to visit redbag', function (done) {
+    process.env.FORIM_BY_PASS_POLICIES = 1;
+    var req = http(app).get('/thread/redbag/10101010');
+    req.cookies = shared.cookies;
+    req
+      .expect(200, function (err, res) {
+        res.text.should.containEql('此红包不存在或已被删除。');
         done(err);
       });
   });

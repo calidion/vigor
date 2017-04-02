@@ -153,4 +153,10 @@ $(document).ready(function () {
   }
   $('.guru-refresh').click(randomGuru);
   randomGuru();
+
+  // 红包
+
+  $('.redbag-button').click(function() {
+    $('#value').val($(this).attr('value'));
+  });
 });

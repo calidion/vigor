@@ -40,6 +40,24 @@ describe('#oauth', function () {
       });
   });
 
+  it('should 302 when get /oauth/github/login', function (done) {
+    var _clientID = config.oauth.adapters.github.clientID;
+    config.oauth.adapters.github.clientID = 'aldskfjo2i34j2o3';
+    var req = http(app);
+    req.get('/oauth/github/login').query({
+      url: 'sdfosdfofd'
+    })
+      .expect(302, function (err, res) {
+        if (err) {
+          return done(err);
+        }
+        res.headers.should.have.property('location')
+          .with.startWith('https://github.com/login/oauth/authorize?');
+        config.oauth.adapters.github.clientID = _clientID;
+        done();
+      });
+  });
+
   it('should redirect to github oauth page', function (done) {
     var _clientID = config.oauth.adapters.github.clientID;
     config.oauth.adapters.github.clientID = 'clientID chenged';

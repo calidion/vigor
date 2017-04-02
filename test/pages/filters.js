@@ -2,6 +2,7 @@ var urlencode = require('../../lib/template/filters/urlencode');
 var category = require('../../lib/template/filters/category');
 var since = require('../../lib/template/filters/since');
 var iso = require('../../lib/template/filters/iso');
+var sum = require('../../lib/template/filters/sum');
 
 describe('category', function () {
   it('should return 分享', function () {
@@ -38,5 +39,20 @@ describe('iso', function () {
   it('should test since', function () {
     var a = iso(new Date(), 'YYYY');
     a.should.be.equal('2017');
+  });
+});
+
+describe('sum', function () {
+  it('should get sum', function () {
+    var data = [
+      {
+        value: 1
+      },
+      {
+        value: 2
+      }
+    ];
+    var result = sum(data);
+    result.should.be.equal(3);
   });
 });
