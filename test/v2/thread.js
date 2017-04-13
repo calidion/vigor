@@ -264,6 +264,7 @@ describe('v2 thread', function () {
     req.field('emails', 'calidion@gmail.com');
     req.field('emails', 'calidion1@gmail.com');
     req.expect(200, function (err, res) {
+      console.log(err, res.text);
       res.text.should.containEql('成功');
       done(err);
     });

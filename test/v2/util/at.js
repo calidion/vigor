@@ -2,11 +2,13 @@ var at = require('../../../lib/v2/util/at');
 var assert = require('assert');
 var server = require('../app');
 var app;
+var models;
 
 describe('v2 at', function () {
   before(function (done) {
-    server(function (data) {
+    server(function (data, m) {
       app = data;
+      models = m;
       done();
     });
   });
@@ -39,7 +41,7 @@ describe('v2 at', function () {
   it('should parse', function (done) {
     var content = "```  pre   ```aaa@ccc @ccc @sdfsdf @sdfsdfs end";
     var req = {
-      models: app.models
+      models: models
     };
     at.parse(req, content, {
       thread: {
@@ -62,7 +64,7 @@ describe('v2 at', function () {
   it('should parse', function (done) {
     var content = "```  pre   ```aaa@ccc @ccc @sdfsdf @sdfsdfs end";
     var req = {
-      models: app.models
+      models: models
     };
     at.parse(req, content, {
       thread: {

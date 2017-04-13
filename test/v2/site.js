@@ -1,12 +1,14 @@
 var http = require('supertest');
 var server = require('./app');
 var app;
+var models;
 var config = require('../../lib/config');
 
 describe('v2 site', function () {
   before(function (done) {
-    server(function (data) {
+    server(function (data, m) {
       app = data;
+      models = m;
       done();
     });
   });
@@ -49,7 +51,7 @@ describe('letenc', function () {
   var value = 'value';
 
   before(function (cb) {
-    var LetsEnc = app.models.LetsEnc;
+    var LetsEnc = models.LetsEnc;
     LetsEnc.create({
       key: key,
       value: value

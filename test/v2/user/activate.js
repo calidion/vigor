@@ -1,13 +1,14 @@
 var http = require('supertest');
 var shared = require('../shared');
 var server = require('../app');
-var app;
+var app, models;
 
 describe('v2 user#activate', function () {
   var username = shared.user.username;
   before(function (done) {
-    server(function (data) {
+    server(function (data, m) {
       app = data;
+      models = m;
       done();
     });
   });
@@ -32,7 +33,7 @@ describe('v2 user#activate', function () {
     });
   });
   it('should activate an account', function (done) {
-    app.models.User.findOne({
+    models.User.findOne({
       username: username
     }).then(function (found) {
       var req = http(app);
@@ -46,7 +47,7 @@ describe('v2 user#activate', function () {
     });
   });
   it('should activate an account', function (done) {
-    app.models.User.findOne({
+    models.User.findOne({
       username: username
     }).then(function (found) {
       var req = http(app);

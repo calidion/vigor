@@ -155,7 +155,8 @@ describe('v2 socket.io', function () {
     };
     var client1 = ioc.connect(url, options);
     client1.on('connect', function () {
-      vig.events.send('sio-message', {
+      var events = new vig.VEvent();
+      events.send('sio-message', {
         receiver: {
           id: shared.profile.id
         }

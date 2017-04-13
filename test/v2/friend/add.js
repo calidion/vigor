@@ -2,6 +2,7 @@ var http = require('supertest');
 var shared = require('../shared');
 var server = require('../app');
 var app;
+var models;
 var token;
 
 var user1 = shared.newUser();
@@ -14,9 +15,10 @@ var user4 = shared.newUser();
 
 describe('v2 friend', function () {
   before(function (done) {
-    server(function (data) {
+    server(function (data, m) {
       app = data;
-      var MessageFriendInvite = app.models.MessageFriendInvite;
+      models = m;
+      var MessageFriendInvite = models.MessageFriendInvite;
       MessageFriendInvite.destroy({}).exec(function () {
         done();
       });
@@ -87,7 +89,7 @@ describe('v2 friend', function () {
   });
 
   it('should activate an account', function (done) {
-    app.models.User.findOne({
+    models.User.findOne({
       username: user1.username
     }).then(function (found) {
       var req = http(app);
@@ -194,7 +196,7 @@ describe('v2 friend', function () {
   });
 
   it('should activate an account', function (done) {
-    app.models.User.findOne({
+    models.User.findOne({
       username: user2.username
     }).then(function (found) {
       var req = http(app);
@@ -281,7 +283,7 @@ describe('v2 friend', function () {
   });
 
   it('should activate an account', function (done) {
-    app.models.User.findOne({
+    models.User.findOne({
       username: user3.username
     }).then(function (found) {
       var req = http(app);
@@ -490,7 +492,7 @@ describe('v2 friend', function () {
 
   it('should add a friend registerred', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 0;
-    var Friend = app.models.Friend;
+    var Friend = models.Friend;
     Friend.destroy({}).exec(function () {
       var req = http(app).post('/friend/add');
       req.cookies = cookie1;
@@ -546,7 +548,7 @@ describe('v2 friend', function () {
 
   it('clear friends', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 0;
-    var Friend = app.models.Friend;
+    var Friend = models.Friend;
     Friend.destroy({}).exec(function () {
       done();
     });

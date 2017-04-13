@@ -2,14 +2,16 @@ var http = require('supertest');
 var shared = require('../shared');
 var server = require('../app');
 var app;
+var models;
 
 describe('v2 user#login', function () {
   var username = shared.user.username;
   var email = shared.user.email;
 
   before(function (done) {
-    server(function (data) {
+    server(function (data, m) {
       app = data;
+      models = m;
       done();
     });
   });
@@ -36,7 +38,7 @@ describe('v2 user#login', function () {
   });
 
   it('should 200 when get /password/reset', function (done) {
-    app.models.User.findOne({
+    models.User.findOne({
       username: username
     }).then(function (found) {
       var req = http(app);
@@ -65,7 +67,7 @@ describe('v2 user#login', function () {
   });
 
   it('should update password', function (done) {
-    app.models.User.findOne({
+    models.User.findOne({
       username: username
     }).then(function (found) {
       var req = http(app);

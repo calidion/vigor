@@ -1,6 +1,7 @@
 var http = require('supertest');
 var server = require('../app');
 var app;
+var models;
 var shared = require('../shared');
 var group;
 var invite;
@@ -10,8 +11,9 @@ var messages;
 
 describe('Group', function () {
   before(function (done) {
-    server(function (data) {
+    server(function (data, m) {
       app = data;
+      models = m;
       done();
     });
   });
@@ -285,7 +287,7 @@ describe('Group', function () {
   });
 
   it('should activate an account', function (done) {
-    app.models.User.findOne({
+    models.User.findOne({
       username: user.username
     }).then(function (found) {
       var req = http(app);
@@ -404,7 +406,7 @@ describe('Group', function () {
   it('should notify the existance of a member when ack', function (done) {
     var req = http(app).get('/group/member/ack');
     req.cookies = cookies;
-    app.models.GroupMemberInvite.update(
+    models.GroupMemberInvite.update(
       {
         email: user.email,
         token: invite.token,

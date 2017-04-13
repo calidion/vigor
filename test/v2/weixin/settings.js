@@ -31,6 +31,7 @@ describe('v2 weixin settings', function () {
       })
       .expect(200)
       .end(function (error, res) {
+        console.log(error, res.text);
         assert.equal(true, !error);
         assert.deepEqual({
           code: 0,
