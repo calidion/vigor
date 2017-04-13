@@ -14,7 +14,7 @@ describe('v2 weixin pages', function () {
   it('should be able to visit api', function (done) {
     process.env.FORIM_BY_PASS_POLICIES = 1;
     var req = request(express)
-      .get('/v2/weixin/settings/user?type=app');
+      .get('/weixin/settings/user?type=app');
     req.cookies = cache.cookes;
     req
       .expect(200)
@@ -27,7 +27,7 @@ describe('v2 weixin pages', function () {
 
   it('should be able to visit api', function (done) {
     var req = request(express)
-      .get('/v2/weixin/settings/user?type=message');
+      .get('/weixin/settings/user?type=message');
     req.cookies = cache.cookes;
     req
       .expect(200)
@@ -41,7 +41,7 @@ describe('v2 weixin pages', function () {
 
   it('should be able to visit api', function (done) {
     var req = request(express)
-      .get('/v2/weixin/settings/user?type=oauth');
+      .get('/weixin/settings/user?type=oauth');
     req.cookies = cache.cookes;
     req
       .expect(200)
@@ -55,7 +55,7 @@ describe('v2 weixin pages', function () {
 
   it('should be able to visit api', function (done) {
     var req = request(express)
-      .get('/v2/weixin/settings/user?type=urls');
+      .get('/weixin/settings/user?type=urls');
     req.cookies = cache.cookes;
     req
       .expect(200)
@@ -69,7 +69,7 @@ describe('v2 weixin pages', function () {
 
   it('should be able to visit api', function (done) {
     var req = request(express)
-      .get('/v2/weixin/settings/user?type=server');
+      .get('/weixin/settings/user?type=server');
     req.cookies = cache.cookes;
     req
       .expect(200)
@@ -83,7 +83,7 @@ describe('v2 weixin pages', function () {
 
   it('should be able to visit api', function (done) {
     var req = request(express)
-      .get('/v2/weixin/settings/user?type=merchant');
+      .get('/weixin/settings/user?type=merchant');
     req.cookies = cache.cookes;
     req
       .expect(200)
@@ -96,7 +96,7 @@ describe('v2 weixin pages', function () {
   });
   it('should be able to visit api', function (done) {
     var req = request(express)
-      .get('/v2/weixin/settings/user?type=certificate');
+      .get('/weixin/settings/user?type=certificate');
     req.cookies = cache.cookes;
     req
       .expect(200)
@@ -109,7 +109,7 @@ describe('v2 weixin pages', function () {
 
   it('should be able to visit api', function (done) {
     var req = request(express)
-      .get('/v2/weixin/settings/user?type=ttt');
+      .get('/weixin/settings/user?type=ttt');
     req.cookies = cache.cookes;
     req
       .expect(200)
