@@ -1,10 +1,18 @@
 {
   "compilerOptions": {
-    "outDir": "./build",
     "allowJs": true,
-    "target": "es5"
+    "target": "es5",
+    "lib": [
+      "es2015"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true
   },
   "include": [
-    "./lib/**/*"
+    "./src/**/*"
+  ],
+  "files": [
+    "index.ts"
   ]
 }
