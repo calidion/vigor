@@ -1,7 +1,8 @@
 var http = require('supertest');
 var shared = require('../shared');
 var server = require('../app');
-var app, models;
+var app;
+var models;
 
 describe('v2 user#activate', function () {
   var username = shared.user.username;

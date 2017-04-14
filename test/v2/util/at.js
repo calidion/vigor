@@ -1,13 +1,11 @@
 var at = require('../../../lib/v2/util/at');
 var assert = require('assert');
 var server = require('../app');
-var app;
 var models;
 
 describe('v2 at', function () {
   before(function (done) {
     server(function (data, m) {
-      app = data;
       models = m;
       done();
     });

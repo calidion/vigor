@@ -33,7 +33,7 @@ gulp.task("ts", function () {
 
 
 gulp.task('static', function () {
-  return gulp.src(['lib/**/*.js', 'test/**/*.js'])
+  return gulp.src(['lib/**/*.js', 'test/**/*.js', '!lib/src/**/*.js'])
     .pipe(excludeGitignore())
     .pipe(eslint())
     .pipe(eslint.format())
